@@ -41,55 +41,61 @@ const itemVariants = {
 
 export default function ProcessSection() {
   return (
-    <section id="process" className="bg-[var(--bg-900)] px-6 py-24 sm:px-8 lg:px-12">
+    <section
+      id="process"
+      className="bg-[var(--bg-900)] px-6 py-[100px] font-[family-name:var(--font-body)] sm:px-8 lg:px-12"
+    >
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.35 }}
           variants={itemVariants}
-          className="mx-auto mb-14 max-w-3xl text-center"
+          className="mx-auto mb-16 max-w-3xl text-center"
         >
-          <p className="mb-4 text-sm font-semibold tracking-[0.18em] text-[var(--color-primary)] uppercase">
+          <p className="mb-4 text-[10px] font-semibold tracking-[0.2em] text-[var(--color-primary)] uppercase">
             Our Process
           </p>
-          <h2 className="font-[family-name:var(--font-heading)] text-4xl leading-tight font-semibold text-[var(--text-primary)] sm:text-5xl">
+          <h2 className="font-[family-name:var(--font-heading)] text-4xl leading-none font-semibold tracking-[-2px] text-[var(--text-primary)] sm:text-5xl lg:text-6xl">
             From idea to launch, with clarity at every step
           </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-8 font-light text-[var(--text-secondary)]">
+          <p className="mx-auto mt-5 max-w-2xl text-[15px] leading-8 font-light text-[var(--text-secondary)]">
             A structured delivery model that keeps teams aligned, timelines visible, and technical decisions grounded in long-term value.
           </p>
         </motion.div>
 
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={containerVariants}
-          className="grid gap-0 md:grid-cols-2 lg:grid-cols-4"
-        >
-          {steps.map((step, index) => (
-            <motion.article
-              key={step.title}
-              variants={itemVariants}
-              className="group min-h-[280px] border border-white/[0.06] bg-[var(--bg-800)]/45 p-8 transition-colors duration-300 hover:bg-[var(--bg-800)]"
-            >
-              <div
-                className="mb-8 font-[family-name:var(--font-heading)] text-[52px] leading-none text-transparent"
-                style={{ WebkitTextStroke: "1px var(--color-primary-dark)" }}
+        <div className="relative">
+          <div
+            aria-hidden="true"
+            className="absolute left-0 right-0 top-8 hidden h-px bg-white/[0.06] lg:block"
+          />
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={containerVariants}
+            className="grid gap-0 border-y border-white/[0.06] md:grid-cols-2 lg:grid-cols-4"
+          >
+            {steps.map((step, index) => (
+              <motion.article
+                key={step.title}
+                variants={itemVariants}
+                className="group relative min-h-[260px] border-b border-r border-white/[0.06] bg-transparent p-8 transition-colors duration-300 last:border-r-0 hover:bg-[var(--bg-800)] md:[&:nth-child(2)]:border-r-0 lg:[&:nth-child(2)]:border-r lg:[&:nth-child(n)]:border-b-0"
               >
-                {String(index + 1).padStart(2, "0")}
-              </div>
+                <div className="relative z-10 mb-10 flex h-16 w-16 items-center justify-center rounded-full border border-[var(--color-primary-border)] bg-transparent font-[family-name:var(--font-heading)] text-xl text-[var(--color-primary)] transition-colors duration-300 group-hover:bg-[var(--color-primary)] group-hover:text-white">
+                  {String(index + 1).padStart(2, "0")}
+                </div>
 
-              <h3 className="text-xl font-semibold text-[var(--text-primary)]">
-                {step.title}
-              </h3>
-              <p className="mt-4 text-sm leading-7 font-light text-[var(--text-secondary)]">
-                {step.description}
-              </p>
-            </motion.article>
-          ))}
-        </motion.div>
+                <h3 className="font-[family-name:var(--font-heading)] text-lg leading-none font-semibold tracking-[-0.4px] text-[var(--text-primary)]">
+                  {step.title}
+                </h3>
+                <p className="mt-4 text-[13px] leading-6 font-light text-[var(--text-secondary)]">
+                  {step.description}
+                </p>
+              </motion.article>
+            ))}
+          </motion.div>
+        </div>
       </div>
     </section>
   );

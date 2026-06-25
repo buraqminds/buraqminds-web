@@ -5,21 +5,24 @@ import { motion } from "framer-motion";
 const testimonials = [
   {
     quote:
-      "Buraq Minds helped us move from prototype to launch with a secure, scalable platform and a clear delivery rhythm.",
-    name: "Sarah Khan",
-    role: "Founder, SaaS Startup",
+      "Buraq Minds gave us a secure delivery rhythm and the technical clarity we needed to scale our fintech platform without slowing product velocity.",
+    name: "James Carter",
+    role: "CTO / FinTech London",
+    initials: "JC",
   },
   {
     quote:
-      "Their team brought strong engineering discipline, transparent communication, and practical cybersecurity thinking.",
-    name: "Michael Reed",
-    role: "CTO, Fintech Company",
+      "The team operated like senior product engineers from day one. Architecture, QA, and communication were all handled with unusual discipline.",
+    name: "Olivia Brown",
+    role: "Head of Engineering / Sydney",
+    initials: "OB",
   },
   {
     quote:
-      "We needed speed without chaos. Buraq Minds gave us exactly that with reliable execution and long-term support.",
-    name: "Ayesha Malik",
-    role: "Operations Lead, Enterprise Team",
+      "They helped us turn a complex healthcare workflow into a product we could demo, validate, and extend with confidence.",
+    name: "Daniel Roberts",
+    role: "Founder / HealthTech Chicago",
+    initials: "DR",
   },
 ];
 
@@ -45,7 +48,7 @@ export default function TestimonialsSection() {
   return (
     <section
       id="testimonials"
-      className="relative overflow-hidden bg-[var(--bg-800)] px-6 py-24 sm:px-8 lg:px-12"
+      className="relative overflow-hidden bg-[var(--bg-800)] px-6 py-[100px] font-[family-name:var(--font-body)] sm:px-8 lg:px-12"
     >
       <div
         aria-hidden="true"
@@ -57,15 +60,15 @@ export default function TestimonialsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.35 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-12 max-w-3xl"
+          className="mb-16 max-w-3xl"
         >
-          <p className="mb-4 text-sm font-semibold tracking-[0.18em] text-[var(--color-primary)] uppercase">
+          <p className="mb-4 text-[10px] font-semibold tracking-[0.2em] text-[var(--color-primary)] uppercase">
             Testimonials
           </p>
-          <h2 className="font-[family-name:var(--font-heading)] text-4xl leading-tight font-semibold text-[var(--text-primary)] sm:text-5xl">
+          <h2 className="font-[family-name:var(--font-heading)] text-4xl leading-none font-semibold tracking-[-2px] text-[var(--text-primary)] sm:text-5xl lg:text-6xl">
             Trusted by teams building for growth
           </h2>
-          <p className="mt-5 max-w-2xl text-base leading-8 font-light text-[var(--text-secondary)]">
+          <p className="mt-5 max-w-2xl text-[15px] leading-8 font-light text-[var(--text-secondary)]">
             Senior stakeholders come to Buraq Minds when execution quality,
             security posture, and long-term maintainability all matter.
           </p>
@@ -76,24 +79,40 @@ export default function TestimonialsSection() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
           variants={containerVariants}
-          className="grid gap-5 md:grid-cols-3"
+          className="grid gap-px bg-white/[0.06] md:grid-cols-3"
         >
           {testimonials.map((testimonial) => (
             <motion.article
               key={testimonial.name}
               variants={cardVariants}
-              className="border border-white/[0.06] bg-[var(--bg-700)] p-8 shadow-xl shadow-black/10"
+              className="relative min-h-[360px] bg-[var(--bg-700)] p-8"
             >
-              <p className="text-base leading-8 font-light text-[var(--text-secondary)]">
-                “{testimonial.quote}”
+              <div className="mb-8 flex gap-1 text-[var(--color-primary)]">
+                {Array.from({ length: 5 }).map((_, index) => (
+                  <span key={index}>★</span>
+                ))}
+              </div>
+
+              <div className="absolute right-8 top-6 font-[family-name:var(--font-heading)] text-[72px] leading-none text-[var(--color-primary-alpha)]">
+                &quot;
+              </div>
+
+              <p className="relative z-10 font-[family-name:var(--font-heading)] text-base leading-8 font-light italic text-[var(--text-secondary)]">
+                {testimonial.quote}
               </p>
-              <div className="mt-8">
-                <h3 className="text-sm font-semibold text-[var(--text-primary)]">
-                  {testimonial.name}
-                </h3>
-                <p className="mt-1 text-xs text-[var(--text-muted)]">
-                  {testimonial.role}
-                </p>
+
+              <div className="mt-10 flex items-center gap-4">
+                <div className="flex h-11 w-11 items-center justify-center rounded-full border border-[var(--color-primary-border)] bg-[var(--color-primary-alpha)] text-sm font-semibold text-[var(--color-primary)]">
+                  {testimonial.initials}
+                </div>
+                <div>
+                  <h3 className="font-[family-name:var(--font-heading)] text-[15px] leading-none font-bold text-[var(--text-primary)]">
+                    {testimonial.name}
+                  </h3>
+                  <p className="mt-2 text-xs font-light text-[var(--text-muted)]">
+                    {testimonial.role}
+                  </p>
+                </div>
               </div>
             </motion.article>
           ))}
