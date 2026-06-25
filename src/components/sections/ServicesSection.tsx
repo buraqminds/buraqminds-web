@@ -145,7 +145,7 @@ export default function ServicesSection() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
-          className="grid auto-rows-fr gap-5 sm:gap-6 md:grid-cols-2 xl:grid-cols-4"
+          className="grid gap-5 sm:gap-6 md:grid-cols-2 xl:grid-cols-3"
         >
           {services.map((service, index) => (
             <motion.article
@@ -153,13 +153,7 @@ export default function ServicesSection() {
               variants={cardVariants}
               whileHover={{ y: -8 }}
               transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-              className={`group relative min-h-[330px] overflow-hidden rounded-[22px] border border-white/[0.08] bg-[linear-gradient(145deg,rgba(255,255,255,0.1),rgba(255,255,255,0.025)_42%,rgba(192,57,43,0.04)),rgba(20,20,20,0.76)] p-7 shadow-[0_24px_80px_rgba(0,0,0,0.26)] backdrop-blur-xl transition-colors duration-300 hover:border-[var(--color-primary-border)] hover:shadow-[0_30px_100px_rgba(192,57,43,0.16)] sm:p-8 lg:p-9 ${
-                index === 0 || index === 3
-                  ? "xl:col-span-2"
-                  : index === 6
-                    ? "xl:row-span-2"
-                    : ""
-              }`}
+              className="group relative min-h-[330px] overflow-hidden rounded-[22px] border border-white/[0.08] bg-[linear-gradient(145deg,rgba(255,255,255,0.1),rgba(255,255,255,0.025)_42%,rgba(192,57,43,0.04)),rgba(20,20,20,0.76)] p-7 shadow-[0_24px_80px_rgba(0,0,0,0.26)] backdrop-blur-xl transition-colors duration-300 hover:border-[var(--color-primary-border)] hover:shadow-[0_30px_100px_rgba(192,57,43,0.16)] sm:p-8 lg:p-9"
             >
               <div
                 aria-hidden="true"

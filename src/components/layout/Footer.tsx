@@ -1,7 +1,6 @@
 import BrandLogo from "@/components/layout/BrandLogo";
 import { siteConfig } from "@/lib/config";
 import { services } from "@/content/services";
-import { siteContent } from "@/content/site";
 import Link from "next/link";
 import type { SVGProps } from "react";
 
@@ -39,25 +38,6 @@ function TwitterIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-const tickerItems = [
-  {
-    platform: "LinkedIn",
-    text: "Secure SaaS MVP delivered for a FinTech team in 90 days.",
-  },
-  {
-    platform: "X",
-    text: "Security-first engineering for AI-powered products.",
-  },
-  {
-    platform: "Facebook",
-    text: "VAPT, cloud hardening, and SOC 2 readiness for growing teams.",
-  },
-  {
-    platform: "Instagram",
-    text: "Building software systems with intelligence, security, and polish.",
-  },
-] as const;
-
 const companyLinks = [
   { label: "About", href: "/about" },
   { label: "Portfolio", href: "/portfolio" },
@@ -81,25 +61,18 @@ const socialLinks = [
 
 export default function Footer() {
   const year = new Date().getFullYear();
-  const marqueeItems = [...tickerItems, ...tickerItems];
 
   return (
     <footer className="border-t border-white/[0.06] bg-[var(--bg-800)]">
-      <div className="overflow-hidden border-b border-white/[0.06] bg-black/10 py-3">
-        <div className="footer-marquee-track flex w-max items-center gap-16">
-          {marqueeItems.map((item, index) => (
-            <div
-              key={`${item.platform}-${index}`}
-              className="flex shrink-0 items-center gap-3 whitespace-nowrap"
-            >
-              <span className="text-[10px] font-semibold tracking-[0.1em] text-[var(--color-primary)] uppercase">
-                {item.platform}
-              </span>
-              <span className="text-sm text-[var(--text-secondary)]">
-                {item.text}
-              </span>
-            </div>
-          ))}
+      <div className="border-b border-white/[0.06] bg-black/10 px-4 py-4 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-col gap-2 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
+          <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--color-primary)]">
+            Intelligence. Security. Innovation.
+          </span>
+          <span className="text-sm leading-6 text-[var(--text-secondary)]">
+            Secure AI, cybersecurity, cloud, and software delivery for teams
+            building systems that must perform in production.
+          </span>
         </div>
       </div>
 
@@ -118,7 +91,9 @@ export default function Footer() {
               />
             </Link>
             <p className="mb-6 max-w-sm text-sm leading-relaxed text-[var(--text-secondary)]">
-              {siteContent.description}
+              Buraq Minds engineers secure AI workflows, cloud-native
+              platforms, cybersecurity programs, and scalable software systems
+              for teams that need reliable execution.
             </p>
             <div className="flex items-center gap-3">
               {socialLinks.map(({ label, href, icon: Icon }) => (
