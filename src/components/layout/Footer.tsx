@@ -76,7 +76,7 @@ export default function Footer() {
           {/* Col 1 — Brand */}
           <div>
             <Link href="/" aria-label="Buraq Minds home" style={{ display: "inline-flex", marginBottom: "20px" }}>
-              <BrandLogo width={140} height={40} style={{ height: "48px", width: "auto", objectFit: "contain" }} />
+              <BrandLogo width={140} height={40} />
             </Link>
             <p style={{ fontSize: "13px", lineHeight: 1.75, color: "var(--text-secondary)", marginBottom: "24px", fontWeight: 300 }}>
               Buraq Minds engineers secure AI workflows, cloud-native platforms,
