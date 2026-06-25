@@ -1,4 +1,5 @@
 import { siteConfig } from "@/lib/config";
+import Image from "next/image";
 import Link from "next/link";
 import type { SVGProps } from "react";
 
@@ -39,32 +40,26 @@ function TwitterIcon(props: SVGProps<SVGSVGElement>) {
 const tickerItems = [
   {
     platform: "LinkedIn",
-    color: "#0A66C2",
     text: "Excited to share how we helped a fintech startup ship a secure SaaS MVP in 90 days.",
   },
   {
     platform: "Twitter",
-    color: "#1D9BF0",
     text: "Security-first engineering isn't optional — it's how modern products earn trust.",
   },
   {
     platform: "Instagram",
-    color: "#E4405F",
     text: "Behind the scenes with the Buraq Minds team building AI-powered solutions.",
   },
   {
     platform: "Facebook",
-    color: "#1877F2",
     text: "We're expanding our cybersecurity practice — VAPT assessments now available.",
   },
   {
     platform: "LinkedIn",
-    color: "#0A66C2",
     text: "Cloud & DevOps case study: 40% faster deployments with automated CI/CD pipelines.",
   },
   {
     platform: "Twitter",
-    color: "#1D9BF0",
     text: "Intelligence. Security. Innovation. — that's the Buraq Minds way.",
   },
 ] as const;
@@ -103,10 +98,7 @@ export default function Footer() {
               key={`${item.platform}-${index}`}
               className="flex shrink-0 items-center gap-3 whitespace-nowrap"
             >
-              <span
-                className="rounded-full px-3 py-1 text-xs font-semibold text-white"
-                style={{ backgroundColor: item.color }}
-              >
+              <span className="text-[10px] font-semibold tracking-[0.1em] text-[var(--color-primary)] uppercase">
                 {item.platform}
               </span>
               <span className="text-sm text-[var(--text-secondary)]">
@@ -122,10 +114,14 @@ export default function Footer() {
           <div>
             <Link
               href="/"
-              className="mb-5 inline-block font-[family-name:var(--font-heading)] text-2xl font-bold"
+              className="mb-5 inline-block"
             >
-              <span className="text-[var(--text-primary)]">Buraq</span>
-              <span className="text-[var(--color-primary)]">Minds</span>
+              <Image
+                src="/logo.svg"
+                alt="Buraq Minds"
+                width={120}
+                height={32}
+              />
             </Link>
             <p className="mb-6 max-w-sm text-sm leading-relaxed text-[var(--text-secondary)]">
               {siteConfig.description}

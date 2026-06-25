@@ -1,30 +1,9 @@
 "use client";
 
+import { projects } from "@/content/projects";
 import { motion } from "framer-motion";
-
-const caseStudies = [
-  {
-    sector: "Fintech SaaS",
-    title: "Secure client onboarding platform",
-    description:
-      "A compliance-aware SaaS workflow that reduced manual document review and gave leadership real-time operational visibility.",
-    metrics: ["42% faster onboarding", "Zero critical VAPT findings"],
-  },
-  {
-    sector: "Healthcare AI",
-    title: "AI-assisted reporting system",
-    description:
-      "A private, role-based reporting product with structured data pipelines, audit trails, and model-assisted summaries.",
-    metrics: ["3x reporting speed", "HIPAA-style access controls"],
-  },
-  {
-    sector: "Enterprise Cloud",
-    title: "DevOps modernization sprint",
-    description:
-      "A hardened CI/CD and cloud deployment model that stabilized releases and made rollbacks predictable for distributed teams.",
-    metrics: ["68% fewer release issues", "15-minute rollback path"],
-  },
-];
+import Image from "next/image";
+import Link from "next/link";
 
 const containerVariants = {
   hidden: {},
@@ -48,34 +27,21 @@ export default function CaseStudiesSection() {
   return (
     <section
       id="case-studies"
-      className="relative overflow-hidden bg-[var(--bg-800)] px-6 py-24 sm:px-8 lg:px-12"
+      className="bg-[var(--bg-900)] px-6 py-24 font-[family-name:var(--font-body)] sm:px-8 lg:px-12"
     >
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--color-primary-border)] to-transparent"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute -right-40 top-20 h-96 w-96 rounded-full blur-3xl"
-        style={{
-          background:
-            "radial-gradient(circle, var(--color-primary-alpha) 0%, transparent 70%)",
-        }}
-      />
-
-      <div className="relative z-10 mx-auto max-w-7xl">
+      <div className="mx-auto max-w-7xl">
         <div className="mb-14 grid gap-8 lg:grid-cols-[0.9fr_1fr] lg:items-end">
           <div>
-            <p className="mb-4 text-sm font-semibold tracking-[0.18em] text-[var(--color-primary)] uppercase">
-              Case Studies
+            <p className="mb-4 text-[10px] font-semibold tracking-[0.2em] text-[var(--color-primary)] uppercase">
+              Our Work
             </p>
-            <h2 className="font-[family-name:var(--font-heading)] text-4xl leading-tight font-semibold text-[var(--text-primary)] sm:text-5xl lg:text-6xl">
-              Built for founders, operators, and technical teams under pressure
+            <h2 className="font-[family-name:var(--font-heading)] text-4xl leading-none font-semibold tracking-[-1.5px] text-[var(--text-primary)] sm:text-5xl lg:text-6xl">
+              Delivering results that speak for themselves
             </h2>
           </div>
-          <p className="max-w-2xl text-base leading-8 font-light text-[var(--text-secondary)] lg:justify-self-end">
-            The work we do is measured by reduced risk, faster delivery, and
-            software that can hold up when business demand increases.
+          <p className="max-w-2xl text-[15px] leading-[1.75] font-light text-[var(--text-secondary)] lg:justify-self-end">
+            Six examples of how Buraq Minds applies AI, cybersecurity, cloud,
+            mobile, and blockchain engineering to measurable business outcomes.
           </p>
         </div>
 
@@ -84,42 +50,74 @@ export default function CaseStudiesSection() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
           variants={containerVariants}
-          className="grid gap-5 lg:grid-cols-3"
+          className="grid gap-px bg-white/[0.06] md:grid-cols-2 lg:grid-cols-3"
         >
-          {caseStudies.map((study) => (
+          {projects.map((project) => (
             <motion.article
-              key={study.title}
+              key={project.slug}
               variants={cardVariants}
-              className="group relative min-h-[360px] overflow-hidden border border-white/[0.06] bg-[var(--bg-700)] p-8 transition-colors duration-300 hover:bg-[var(--bg-600)]"
+              className="group relative overflow-hidden border border-transparent bg-[var(--bg-800)] transition duration-300 hover:-translate-y-1 hover:border-[var(--color-primary-border)]"
             >
-              <div
-                aria-hidden="true"
-                className="absolute inset-x-8 top-0 h-px origin-left scale-x-0 bg-[var(--color-primary)] transition-transform duration-300 group-hover:scale-x-100"
-              />
-              <span className="rounded-full border border-[var(--color-primary-border)] bg-[var(--color-primary-alpha)] px-3 py-1 text-xs font-semibold text-[var(--color-primary)]">
-                {study.sector}
-              </span>
-
-              <h3 className="mt-8 font-[family-name:var(--font-heading)] text-3xl leading-tight font-semibold text-[var(--text-primary)]">
-                {study.title}
-              </h3>
-              <p className="mt-5 text-sm leading-7 font-light text-[var(--text-secondary)]">
-                {study.description}
-              </p>
-
-              <div className="mt-8 grid gap-3">
-                {study.metrics.map((metric) => (
-                  <div
-                    key={metric}
-                    className="border-l-2 border-[var(--color-primary)] bg-black/10 px-4 py-3 text-sm text-[var(--text-primary)]"
-                  >
-                    {metric}
-                  </div>
-                ))}
+              <div className="relative flex h-[200px] items-center justify-center overflow-hidden bg-[var(--bg-700)]">
+                <span className="absolute z-0 text-sm font-light tracking-[0.1em] text-[var(--text-muted)] uppercase">
+                  {project.category}
+                </span>
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  unoptimized
+                  className="relative z-10 object-cover"
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+                />
               </div>
+
+              <div className="p-7">
+                <span className="inline-flex border border-[var(--color-primary-border)] px-3 py-1 text-[10px] font-medium tracking-[0.16em] text-[var(--color-primary)] uppercase">
+                  {project.category}
+                </span>
+
+                <h3 className="mt-5 font-[family-name:var(--font-heading)] text-xl leading-none font-semibold tracking-[-0.5px] text-[var(--text-primary)]">
+                  {project.title}
+                </h3>
+                <p className="mt-4 line-clamp-2 text-[13px] leading-[1.75] font-light text-[var(--text-secondary)]">
+                  {project.summary}
+                </p>
+
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {project.technologies.slice(0, 4).map((technology) => (
+                    <span
+                      key={technology}
+                      className="bg-white/[0.04] px-2.5 py-1 text-[10px] font-light text-[var(--text-muted)]"
+                    >
+                      {technology}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="mt-6 flex items-center justify-between gap-4 border-t border-white/[0.06] pt-4 text-[11px] font-light text-[var(--text-muted)]">
+                  <span>{project.meta.location}</span>
+                  <span>{project.meta.duration}</span>
+                </div>
+              </div>
+
+              <span className="absolute bottom-0 left-0 h-px w-full origin-left scale-x-0 bg-[var(--color-primary)] transition-transform duration-300 group-hover:scale-x-100" />
             </motion.article>
           ))}
         </motion.div>
+
+        <div className="mt-12 flex justify-center">
+          <Link
+            href="/portfolio"
+            className="group relative inline-flex border border-[var(--color-primary-border)] px-7 py-4 text-sm font-medium text-[var(--text-primary)] transition-colors hover:text-[var(--color-primary)]"
+          >
+            View All Projects →
+            <span
+              aria-hidden="true"
+              className="absolute bottom-0 left-0 h-px w-full origin-left scale-x-0 bg-[var(--color-primary)] transition-transform duration-300 group-hover:scale-x-100"
+            />
+          </Link>
+        </div>
       </div>
     </section>
   );

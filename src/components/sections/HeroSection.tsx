@@ -14,7 +14,6 @@ type Particle = {
 };
 
 const PARTICLE_COUNT = 60;
-const CONNECTION_DISTANCE = 120;
 const PARTICLE_COLOR = "rgba(192, 57, 43, 0.6)";
 
 const fadeUp = {
@@ -77,24 +76,6 @@ export default function HeroSection() {
         ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
         ctx.fillStyle = PARTICLE_COLOR;
         ctx.fill();
-      }
-
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const distance = Math.hypot(dx, dy);
-
-          if (distance < CONNECTION_DISTANCE) {
-            const opacity = 0.35 * (1 - distance / CONNECTION_DISTANCE);
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(192, 57, 43, ${opacity})`;
-            ctx.lineWidth = 1;
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
-          }
-        }
       }
 
       animationId = requestAnimationFrame(animate);

@@ -4,16 +4,16 @@ import { siteConfig } from "@/lib/config";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Menu, Moon, Sun, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-
-const primaryServices = siteConfig.services.slice(0, 5);
 
 const pageLinks = [
   { label: "About", href: "/about" },
   { label: "Portfolio", href: "/portfolio" },
   { label: "Blog", href: "/blog" },
+  { label: "Cost Estimator", href: "/#estimator" },
 ] as const;
 
 export default function Navbar() {
@@ -55,23 +55,19 @@ export default function Navbar() {
       <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link
           href="/"
-          className="font-[family-name:var(--font-heading)] text-2xl font-bold"
+          className="flex h-10 items-center"
+          aria-label="Buraq Minds home"
         >
-          <span className="text-white">Buraq</span>
-          <span className="text-[var(--color-primary)]">Minds</span>
+          <Image
+            src="/logo.svg"
+            alt="Buraq Minds"
+            width={130}
+            height={36}
+            priority
+          />
         </Link>
 
         <nav className="hidden items-center gap-6 lg:flex">
-          {primaryServices.map((service) => (
-            <Link
-              key={service.slug}
-              href={`/services/${service.slug}`}
-              className={navLinkClass}
-            >
-              {service.title}
-            </Link>
-          ))}
-
           <div
             className="relative"
             onMouseEnter={() => setServicesOpen(true)}
@@ -103,23 +99,26 @@ export default function Navbar() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 8 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute left-1/2 top-full z-50 mt-3 w-80 -translate-x-1/2 rounded-xl border border-white/[0.08] bg-[var(--bg-800)]/95 p-2 shadow-2xl backdrop-blur-xl"
+                  className="absolute left-1/2 top-full z-50 mt-3 w-[560px] -translate-x-1/2 rounded-[4px] border border-white/[0.08] bg-[var(--bg-800)]/95 p-2 backdrop-blur-xl"
                 >
-                  {siteConfig.services.map((service) => (
-                    <Link
-                      key={service.slug}
-                      href={`/services/${service.slug}`}
-                      className="block rounded-lg px-4 py-3 transition-colors hover:bg-[var(--bg-700)]"
-                      onClick={() => setServicesOpen(false)}
-                    >
-                      <span className="block text-sm font-medium text-[var(--text-primary)]">
-                        {service.title}
-                      </span>
-                      <span className="mt-1 block text-xs leading-relaxed text-[var(--text-muted)]">
-                        {service.shortDesc}
-                      </span>
-                    </Link>
-                  ))}
+                  <div className="grid grid-cols-2 gap-px bg-white/[0.06]">
+                    {siteConfig.services.map((service) => (
+                      <Link
+                        key={service.slug}
+                        href={`/services/${service.slug}`}
+                        className="group relative block bg-[var(--bg-800)] px-4 py-4 transition-colors hover:bg-[var(--bg-700)]"
+                        onClick={() => setServicesOpen(false)}
+                      >
+                        <span className="block text-sm font-medium text-[var(--text-primary)]">
+                          {service.title}
+                        </span>
+                        <span className="mt-1 block text-xs leading-relaxed text-[var(--text-muted)]">
+                          {service.shortDesc}
+                        </span>
+                        <span className="absolute bottom-0 left-0 h-px w-full origin-left scale-x-0 bg-[var(--color-primary)] transition-transform duration-300 group-hover:scale-x-100" />
+                      </Link>
+                    ))}
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -137,7 +136,7 @@ export default function Navbar() {
             type="button"
             onClick={toggleTheme}
             aria-label="Toggle theme"
-            className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/[0.08] text-[var(--text-primary)] transition-colors hover:border-[var(--color-primary-border)] hover:text-[var(--color-primary)]"
+            className="flex h-10 w-10 items-center justify-center rounded-[4px] border border-white/[0.08] text-[var(--text-primary)] transition-colors hover:border-[var(--color-primary-border)] hover:text-[var(--color-primary)]"
           >
             {mounted && theme === "dark" ? (
               <Sun className="h-5 w-5" />
@@ -148,7 +147,7 @@ export default function Navbar() {
 
           <Link
             href="#estimator"
-            className="hidden rounded-lg bg-[var(--color-primary)] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[var(--color-primary-light)] sm:inline-flex"
+            className="hidden rounded-[4px] bg-[var(--color-primary)] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[var(--color-primary-light)] sm:inline-flex"
           >
             Get a Quote
           </Link>
@@ -158,7 +157,7 @@ export default function Navbar() {
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen((open) => !open)}
-            className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/[0.08] text-[var(--text-primary)] transition-colors hover:border-[var(--color-primary-border)] lg:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-[4px] border border-white/[0.08] text-[var(--text-primary)] transition-colors hover:border-[var(--color-primary-border)] lg:hidden"
           >
             {mobileOpen ? (
               <X className="h-5 w-5" />
@@ -179,26 +178,15 @@ export default function Navbar() {
             className="overflow-hidden border-b border-white/[0.06] bg-[var(--bg-900)]/98 backdrop-blur-xl lg:hidden"
           >
             <div className="space-y-1 px-4 py-4 sm:px-6">
-              {primaryServices.map((service) => (
-                <Link
-                  key={service.slug}
-                  href={`/services/${service.slug}`}
-                  className="block rounded-lg px-3 py-2.5 text-sm font-medium text-[var(--text-secondary)] transition-colors hover:bg-[var(--bg-800)] hover:text-[var(--text-primary)]"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {service.title}
-                </Link>
-              ))}
-
               <div className="px-3 pt-2 pb-1 text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">
-                All Services
+                Services
               </div>
 
               {siteConfig.services.map((service) => (
                 <Link
                   key={`mobile-all-${service.slug}`}
                   href={`/services/${service.slug}`}
-                  className="block rounded-lg px-3 py-2 text-sm text-[var(--text-muted)] transition-colors hover:bg-[var(--bg-800)] hover:text-[var(--text-primary)]"
+                  className="block rounded-[4px] px-3 py-2 text-sm text-[var(--text-muted)] transition-colors hover:bg-[var(--bg-800)] hover:text-[var(--text-primary)]"
                   onClick={() => setMobileOpen(false)}
                 >
                   {service.title}
@@ -209,7 +197,7 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="block rounded-lg px-3 py-2.5 text-sm font-medium text-[var(--text-secondary)] transition-colors hover:bg-[var(--bg-800)] hover:text-[var(--text-primary)]"
+                  className="block rounded-[4px] px-3 py-2.5 text-sm font-medium text-[var(--text-secondary)] transition-colors hover:bg-[var(--bg-800)] hover:text-[var(--text-primary)]"
                   onClick={() => setMobileOpen(false)}
                 >
                   {link.label}
@@ -218,7 +206,7 @@ export default function Navbar() {
 
               <Link
                 href="#estimator"
-                className="mt-3 flex w-full items-center justify-center rounded-lg bg-[var(--color-primary)] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[var(--color-primary-light)]"
+                className="mt-3 flex w-full items-center justify-center rounded-[4px] bg-[var(--color-primary)] px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-[var(--color-primary-light)]"
                 onClick={() => setMobileOpen(false)}
               >
                 Get a Quote

@@ -1,0 +1,539 @@
+[
+  {
+    "slug": "body-language-ai",
+    "title": "AI-Based Body Language Analysis",
+    "category": "AI & Computer Vision",
+    "summary": "Built an AI system detecting non-verbal cues via video/audio to provide actionable coaching for better communication skills.",
+    "overview": "Developed an AI-powered system that analyzes body language and communication behavior using video and audio inputs. The solution detects facial micro-expressions, posture, gestures, and vocal tone to evaluate confidence, engagement, and emotional cues. It provides actionable feedback to improve communication skills for interviews, public speaking, and remote coaching.",
+    "challenge": "",
+    "solution": "Facial Micro-expression Detection, Real-time Posture Analysis, Speech Emotion Recognition (SER), Engagement & Confidence Scoring, Gestural Communication Tracking, Remote Coaching Feedback Loop",
+    "results": [],
+    "deliverables": [
+      "Computer Vision Analysis Engine",
+      "Emotion Recognition Model",
+      "Speech Signal Processing Module",
+      "Performance Dashboard UI",
+      "Actionable Insight Generator"
+    ],
+    "technologies": [
+      "Python",
+      "Computer Vision",
+      "Machine Learning",
+      "TensorFlow / PyTorch",
+      "OpenCV",
+      "Librosa (Audio)",
+      "Data Analysis",
+      "React.js (Dashboard)"
+    ],
+    "image": "https://dummyimages.netlify.app/portfolioimagaes/Bodylanguage-ai.jpg",
+    "sourceUrl": "https://aicyro.com/portfolio/body-language-ai",
+    "meta": {
+      "location": "Philadelphia, PA",
+      "duration": "6 months",
+      "teamSize": "9 developers"
+    },
+    "id": "01"
+  },
+  {
+    "slug": "sales-ai-automation",
+    "title": "AI Sales Automation",
+    "category": "Workflow Automation",
+    "summary": "Developed an AI sales platform that qualifies leads, engages via chat, books meetings, updates CRM, and generates analytics.",
+    "overview": "Developed an end-to-end AI-powered sales automation platform that qualifies leads, engages prospects via chat, books meetings, updates CRM records, and generates actionable analytics. The solution reduced manual work, increased lead conversion, and provided real-time business insights.",
+    "challenge": "",
+    "solution": "Lead Qualification & Scoring, Chatbot Prospect Engagement, Automated Meeting Booking, CRM Record Syncing, Analytics & Insight Generation, Email Sequence Automation",
+    "results": [],
+    "deliverables": [
+      "Interactive System Prototype",
+      "AI Model Training Pipeline",
+      "Automated Workflow Scripts",
+      "Production Rollout Plan",
+      "Documentation & User Guide"
+    ],
+    "technologies": [
+      "LLM Engineering",
+      "Prompt Engineering",
+      "Python",
+      "Workflow Automation (n8n/Zapier)",
+      "CRM Integration",
+      "Vector Databases",
+      "API Development"
+    ],
+    "image": "https://dummyimages.netlify.app/portfolioimagaes/AI%20Sales%20Automation.jpg",
+    "sourceUrl": "https://aicyro.com/portfolio/sales-ai-automation",
+    "meta": {
+      "location": "Remote / Global",
+      "duration": "4 months",
+      "teamSize": "Solo Engineer"
+    },
+    "id": "02"
+  },
+  {
+    "slug": "ai-tutor",
+    "title": "Personalized AI Tutor",
+    "category": "EdTech & AI",
+    "summary": "Intelligent tutoring system using Deep Knowledge Tracing and Transformers for adaptive learning paths and personalized feedback.",
+    "overview": "Developed an intelligent tutoring system that adapts lesson difficulty, questions, and explanations in real-time based on student performance. Implemented Deep Knowledge Tracing (DKT) to model learner mastery and transformer-based models to generate personalized questions and feedback.",
+    "challenge": "",
+    "solution": "Deep Knowledge Tracing (DKT), Adaptive Difficulty Scaling, Transformer Question Generation, Student Mastery Modeling, Real-time Feedback Loop, Dataset Integration (ASSISTments)",
+    "results": [],
+    "deliverables": [
+      "Adaptive Learning Algorithm",
+      "Student Dashboard UI",
+      "Teacher Analytics Panel",
+      "Question Generation Model",
+      "API for Content Delivery"
+    ],
+    "technologies": [
+      "Python",
+      "PyTorch",
+      "FastAI",
+      "NumPy",
+      "Transformers (Hugging Face)",
+      "React.js",
+      "Node.js"
+    ],
+    "image": "https://dummyimages.netlify.app/portfolioimagaes/Aitutor.jpg",
+    "sourceUrl": "https://aicyro.com/portfolio/ai-tutor",
+    "meta": {
+      "location": "Remote",
+      "duration": "5 months",
+      "teamSize": "3 Developers"
+    },
+    "id": "03"
+  },
+  {
+    "slug": "robotics-control",
+    "title": "AI-Powered Robotic Control Platform",
+    "category": "Robotics & Reinforcement Learning",
+    "summary": "Built AI robotics control system letting robotic arms and humanoid robots learn goal-driven behaviors, not fixed rules.",
+    "overview": "Designed and implemented an end-to-end AI robotics control system enabling robotic arms and humanoid robots to learn goal-based behaviors instead of rigid instructions. Built physics-accurate simulations using PyBullet, trained agents with reinforcement learning, and integrated OpenCV & MediaPipe for vision-based perception.",
+    "challenge": "",
+    "solution": "Physics-Accurate Simulation (PyBullet), Reinforcement Learning Agents, Vision-Based Perception (OpenCV), Goal-Oriented Behavior Learning, Sim-to-Real Transfer Pipelines, Real-World Hardware Deployment",
+    "results": [],
+    "deliverables": [
+      "Custom Simulation Environment",
+      "Trained RL Policy Models",
+      "Computer Vision Module",
+      "Control Interface API",
+      "Hardware Integration Scripts"
+    ],
+    "technologies": [
+      "Python",
+      "PyBullet",
+      "Stable Baselines3",
+      "RLlib",
+      "OpenCV",
+      "MediaPipe",
+      "PyTorch",
+      "ROS 2"
+    ],
+    "image": "https://dummyimages.netlify.app/portfolioimagaes/robotics.jpg",
+    "sourceUrl": "https://aicyro.com/portfolio/robotics-control",
+    "meta": {
+      "location": "Boston, MA",
+      "duration": "8 months",
+      "teamSize": "4 Engineers"
+    },
+    "id": "04"
+  },
+  {
+    "slug": "auto-scholar",
+    "title": "AutoScholar: Autonomous Research Augmentation",
+    "category": "NLP & Research AI",
+    "summary": "Autonomous AI research assistant that reads, analyzes, and synthesizes academic papers to answer complex scientific questions.",
+    "overview": "Designed and developed an autonomous AI research assistant that answers scientific research questions by reading and analyzing academic papers. The system retrieves relevant literature from the S2ORC dataset using SciBERT embeddings, extracts key insights with NLP techniques, and synthesizes evidence-backed summaries using LangChain-based reasoning.",
+    "challenge": "",
+    "solution": "Semantic Paper Retrieval (SciBERT), Automated Insight Extraction, Evidence-Backed Summarization, Citation Generation & Verification, Question Answering Pipeline (RAG), Knowledge Graph Construction",
+    "results": [],
+    "deliverables": [
+      "Autonomous Agent Framework",
+      "Streamlit Research Dashboard",
+      "Embeddings Vector Database",
+      "Citation Validation Module",
+      "Research Summary Generator"
+    ],
+    "technologies": [
+      "Python",
+      "LangChain",
+      "SciBERT",
+      "Pinecone / FAISS",
+      "OpenAI API (GPT-4)",
+      "S2ORC Dataset",
+      "Streamlit"
+    ],
+    "image": "https://dummyimages.netlify.app/portfolioimagaes/autoscholor.jpg",
+    "sourceUrl": "https://aicyro.com/portfolio/auto-scholar",
+    "meta": {
+      "location": "London, UK",
+      "duration": "6 months",
+      "teamSize": "Solo Project"
+    },
+    "id": "05"
+  },
+  {
+    "slug": "health-analyzer",
+    "title": "AI-Based Multimodal Health Analyzer",
+    "category": "Healthcare & AI",
+    "summary": "Smart health platform predicting stress and sleep issues using multimodal AI voice, face, time-series with privacy-first dashboard.",
+    "overview": "Developed a smart health and wellness platform that predicts stress, burnout, and sleep issues using multimodal AI. The system analyzes voice signals, facial micro-expressions, and time-series health data to generate real-time insights. Built a privacy-first, user-friendly frontend dashboard that visualizes trends, risk levels, and actionable wellness indicators.",
+    "challenge": "",
+    "solution": "Facial Micro-expression Analysis, Voice/Audio Signal Processing, Time-Series Health Data Integration, Real-time Stress Prediction, Sleep Quality Correlation, Privacy-First Data Handling",
+    "results": [],
+    "deliverables": [
+      "Interactive Patient Dashboard",
+      "Multimodal AI Inference Engine",
+      "Real-time Alert System",
+      "Trend Visualization Modules",
+      "API for Wearable Integration"
+    ],
+    "technologies": [
+      "Next.js",
+      "React.js",
+      "Python",
+      "PyTorch",
+      "OpenCV",
+      "Librosa",
+      "Time-Series Analysis",
+      "Tailwind CSS"
+    ],
+    "image": "https://dummyimages.netlify.app/portfolioimagaes/healthanalyser.jpg",
+    "sourceUrl": "https://aicyro.com/portfolio/health-analyzer",
+    "meta": {
+      "location": "Remote",
+      "duration": "5 months",
+      "teamSize": "Solo Full-Stack"
+    },
+    "id": "06"
+  },
+  {
+    "slug": "kaira",
+    "title": "Kaira - AI Financial Wellness Coach",
+    "category": "Expert Services",
+    "summary": "Kaira is an AI financial wellness benefit offering employee coaching and a business dashboard to track workforce well-being.",
+    "overview": "Kaira is an AI-powered personalized financial wellness application offered as a benefit to employees. It connects securely to financial institutions to track behavior, offering digital coaching to improve financial health and reduce stress. Employers gain access to 'Kaira Insight', a business intelligence dashboard to monitor the aggregated financial well-being of their workforce.",
+    "challenge": "",
+    "solution": "Financial Health & Behavioral Assessment, Secure Banking Data Aggregation, Personalized AI Financial Coaching, Expense Tracking & Budgeting, Employer Business Intelligence Dashboard, Data Security & Anonymization",
+    "results": [],
+    "deliverables": [
+      "Kaira Mobile App (iOS & Android)",
+      "Kaira Insight Dashboard (Web)",
+      "Financial Health Reports",
+      "Employee Engagement Metrics",
+      "Personalized Action Plans"
+    ],
+    "technologies": [
+      "Artificial Intelligence (AI)",
+      "Machine Learning",
+      "Python",
+      "iOS (Swift)",
+      "Android (Kotlin)",
+      "Flinks API",
+      "Wealthica API",
+      "OneSignal",
+      "Cloud SaaS",
+      "256-bit SSL Encryption"
+    ],
+    "image": "https://dummyimages.netlify.app/portfolioimagaes/kaira.jpg",
+    "sourceUrl": "https://aicyro.com/portfolio/kaira",
+    "meta": {
+      "location": "Montreal, Canada",
+      "duration": "5 months",
+      "teamSize": "5 developers"
+    },
+    "id": "07"
+  },
+  {
+    "slug": "nyctourism",
+    "title": "New York City Tourism",
+    "category": "Expert Services",
+    "summary": "NYC official tourism platform serving visitors and planners with borough guides, AI travel companion, and booking tools globally.",
+    "overview": "The official destination marketing organization and convention and visitors bureau for New York City. The platform serves as the primary resource for visitors, meeting planners, and travel trade, featuring dynamic guides for all five boroughs, an AI-powered travel companion (Libby), and comprehensive booking tools for hotels, dining, and Broadway shows.",
+    "challenge": "",
+    "solution": "Official DMO Website Rebranding & Development, AI Travel Assistant Integration (Libby), B2B Meeting Planner & Membership Portals, Dynamic Content Management for 5 Boroughs, Real-time Event Calendars & Ticketing, Tourism Research & Insights Dashboard",
+    "results": [],
+    "deliverables": [
+      "Next.js/React Web Application",
+      "Mobile-Responsive Visitor Guide",
+      "Libby AI Chatbot Interface",
+      "Simpleview DAM/CRM Integration",
+      "Visa Destination Insights Analytics"
+    ],
+    "technologies": [
+      "Next.js",
+      "React",
+      "Node.js",
+      "Simpleview (CMS/CRM)",
+      "Algolia Search",
+      "Google Maps API",
+      "Sailthru",
+      "AWS",
+      "Fever Integration",
+      "Visa Destination Insights"
+    ],
+    "image": "https://dummyimages.netlify.app/portfolioimagaes/NYC.jpg",
+    "sourceUrl": "https://aicyro.com/portfolio/nyctourism",
+    "meta": {
+      "location": "New York, NY, USA",
+      "duration": "8 months",
+      "teamSize": "5 developers"
+    },
+    "id": "08"
+  },
+  {
+    "slug": "shady",
+    "title": "Shady Rays - High-Performance Eyewear",
+    "category": "Expert Services",
+    "summary": "Shady Rays is a DTC eyewear brand selling polarized sunglasses with Lost & Broken warranty, virtual try-on, and Shopify Plus UX.",
+    "overview": "Shady Rays is a premier direct-to-consumer eyewear brand offering high-quality, polarized sunglasses backed by an industry-leading 'Lost & Broken' replacement warranty. The platform features a custom-built warranty claims portal, virtual try-on technology, and a VIP loyalty program, all integrated within a high-performance Shopify Plus e-commerce environment.",
+    "challenge": "",
+    "solution": "Shopify Plus Storefront Development, Custom 'Lost & Broken' Warranty Portal, Virtual Try-On Feature Integration, Prescription (Rx) Lens Configuration, VIP Loyalty & Rewards Program, Charitable Impact Tracking System",
+    "results": [],
+    "deliverables": [
+      "Mobile-First E-commerce Website",
+      "Automated Warranty Claims System",
+      "Real-time Inventory Management Integration",
+      "Custom Product Filtering & Search",
+      "Marketing Automation Setup (Email/SMS)"
+    ],
+    "technologies": [
+      "Shopify Plus",
+      "Liquid",
+      "React.js",
+      "JavaScript",
+      "Node.js",
+      "Klaviyo",
+      "Yotpo",
+      "AWS",
+      "Google Analytics 4",
+      "Postscript"
+    ],
+    "image": "https://dummyimages.netlify.app/portfolioimagaes/ShadyRays.jpg",
+    "sourceUrl": "https://aicyro.com/portfolio/shady",
+    "meta": {
+      "location": "Simpsonville, KY, USA",
+      "duration": "9 months",
+      "teamSize": "6 developers"
+    },
+    "id": "09"
+  },
+  {
+    "slug": "jbb",
+    "title": "JBB & Associates - CPA & Business Advisory",
+    "category": "Expert Services",
+    "summary": "Professional digital platform for a Philadelphia accounting firm with scheduling, secure portals, and service funnels for clients.",
+    "overview": "A professional digital platform for a Philadelphia-based accounting and advisory firm. The website streamlines client engagement through integrated appointment scheduling, secure document portals, and comprehensive service funnels for tax preparation, bookkeeping, and business formation.",
+    "challenge": "",
+    "solution": "Tax Preparation & Planning (Individual/Corporate), Business Formation & Entity Optimization, Outsourced Bookkeeping & Payroll, CFO-Level Advisory Services, Secure Client Document Portal, Automated Appointment Scheduling",
+    "results": [],
+    "deliverables": [
+      "Responsive Corporate Website",
+      "Client Onboarding Workflows",
+      "Secure Client Portal Integration",
+      "Tax Savings Analysis Tools",
+      "Industry-Specific Landing Pages"
+    ],
+    "technologies": [
+      "WordPress",
+      "PHP",
+      "HTML5 / CSS3",
+      "JavaScript",
+      "QuickBooks Online API",
+      "Google Analytics",
+      "Calendly Integration",
+      "MySQL",
+      "SSL/TLS Security",
+      "Cloud Hosting"
+    ],
+    "image": "https://dummyimages.netlify.app/portfolioimagaes/Jbband.jpg",
+    "sourceUrl": "https://aicyro.com/portfolio/jbb",
+    "meta": {
+      "location": "Philadelphia, PA",
+      "duration": "6 months",
+      "teamSize": "9 developers"
+    },
+    "id": "10"
+  },
+  {
+    "slug": "politico",
+    "title": "POLITICO Pro - Policy Intelligence Platform",
+    "category": "Expert Services",
+    "summary": "POLITICO Pro is a premium policy intelligence platform combining nonpartisan reporting, AI analysis, data tools, and tracking.",
+    "overview": "POLITICO Pro is a premium, customizable policy intelligence platform designed for government affairs professionals. It combines rigorous non-partisan reporting with advanced data tools, AI-driven analysis, and legislative tracking to help users monitor developments, collaborate on strategy, and influence policy outcomes.",
+    "challenge": "",
+    "solution": "Legislative & Regulatory Tracking System, AI-Powered Policy Intelligence Assistant, Stakeholder Management & Engagement Tools, Real-time News & Custom Alert Feeds, Collaborative Workflow Workspaces (Pro Projects), Federal & State Policymaker Directories",
+    "results": [],
+    "deliverables": [
+      "SaaS Web Platform & Mobile Application",
+      "Interactive Data Visualizations & Dashboards",
+      "AI-Generated Bill Summaries & Reports",
+      "Document Repository (Transcripts, Bill Texts)",
+      "API Integration for Data Feeds"
+    ],
+    "technologies": [
+      "Brightspot CMS",
+      "Java",
+      "React.js",
+      "Apache Solr",
+      "Generative AI / NLP Models",
+      "AWS (Amazon Web Services)",
+      "MySQL",
+      "GraphQL",
+      "Single Sign-On (SSO)",
+      "Node.js"
+    ],
+    "image": "https://dummyimages.netlify.app/portfolioimagaes/politicopro.jpg",
+    "sourceUrl": "https://aicyro.com/portfolio/politico",
+    "meta": {
+      "location": "Arlington, Virginia, USA",
+      "duration": "5 months",
+      "teamSize": "6 developers"
+    },
+    "id": "11"
+  },
+  {
+    "slug": "cove",
+    "title": "Cove.ai - Visual AI Collaboration Workspace",
+    "category": "Expert Services",
+    "summary": "Cove is an AI visual workspace with infinite canvas for research and planning, real-time collaboration, multi-model AI apps.",
+    "overview": "Cove is an intelligent visual workspace designed for collaborative thinking with AI. Unlike linear chatbots, it offers an infinite canvas where users and AI work side-by-side to research, plan, and create. It features real-time multiplayer editing, multi-model AI integration (Anthropic, OpenAI, Perplexity), and the ability to generate custom 'AI Apps' on the fly for specific tasks.",
+    "challenge": "",
+    "solution": "Visual Workspace & Infinite Canvas UI, Multi-LLM Orchestration (Claude, GPT-4, Llama), Real-Time Multiplayer Collaboration Engine, Context-Aware Search & Web Clipping Extension, No-Code 'AI Apps' Generator, Document & Webpage Context Integration",
+    "results": [],
+    "deliverables": [
+      "Cove.ai Web Application",
+      "Chrome Browser Extension",
+      "Interactive 'Cards' System (Text, Tables, Images)",
+      "Shared Knowledge Base/Spaces",
+      "Custom AI Tooling Interface"
+    ],
+    "technologies": [
+      "React.js",
+      "Canvas API / WebGL",
+      "Node.js",
+      "WebSockets",
+      "Anthropic API (Claude 3.5 Sonnet/Haiku)",
+      "OpenAI API",
+      "Perplexity API",
+      "Vector Database",
+      "AWS"
+    ],
+    "image": "https://dummyimages.netlify.app/portfolioimagaes/cove%20ai.jpg",
+    "sourceUrl": "https://aicyro.com/portfolio/cove",
+    "meta": {
+      "location": "Palo Alto, CA",
+      "duration": "3 months",
+      "teamSize": "6 developers"
+    },
+    "id": "12"
+  },
+  {
+    "slug": "hpl",
+    "title": "HPL Games - Web3 Token & Gaming Ecosystem",
+    "category": "Expert Services",
+    "summary": "Blockchain web app for HPL Games enabling ICO, Play-to-Earn economy, token pre-sale, liquidity pools, and crypto wallet access.",
+    "overview": "A blockchain-powered web application and smart contract ecosystem designed for HPL Games, an innovative mobile gaming startup. The platform facilitates the Initial Coin Offering (ICO) of the HPL token, integrates a Play-to-Earn (P2E) economy, and provides a secure infrastructure for in-game currency transactions.",
+    "challenge": "",
+    "solution": "Smart Contract Development, ICO & Token Presale Web App, Crypto Wallet Integration, Tokenomics & Tax Logic Implementation, Blockchain Security Infrastructure, Admin Dashboard for Sales Tracking",
+    "results": [],
+    "deliverables": [
+      "Token Purchasing Web Application",
+      "Deployed HPL Smart Contract",
+      "Secure Wallet Connection Module",
+      "Real-time Transaction Tracker",
+      "Mobile-Responsive User Interface"
+    ],
+    "technologies": [
+      "Blockchain",
+      "Solidity",
+      "Web3.js",
+      "React.js",
+      "Node.js",
+      "MongoDB",
+      "AWS",
+      "Smart Contracts",
+      "HTML5",
+      "CSS3"
+    ],
+    "image": "https://dummyimages.netlify.app/portfolioimagaes/cubix.co.jpg",
+    "sourceUrl": "https://aicyro.com/portfolio/hpl",
+    "meta": {
+      "location": "San Francisco, USA",
+      "duration": "7 months",
+      "teamSize": "6 developers"
+    },
+    "id": "13"
+  },
+  {
+    "slug": "go",
+    "title": "Go Grocer - Ultra-Fast Grocery & Alcohol Delivery",
+    "category": "Expert Services",
+    "summary": "Go Grocer is a Chicago grocery chain with hybrid fulfillment, fast delivery under 30 min, fresh meals, alcohol, and essentials online.",
+    "overview": "Go Grocer is a boutique grocery chain based in Chicago that bridges the gap between a neighborhood market and ultra-fast delivery. The digital platform transforms their brick-and-mortar footprint into a hybrid fulfillment network, offering customers fresh meals, alcohol, and essentials via a seamless web and mobile app experience, often delivering in under 30 minutes.",
+    "challenge": "",
+    "solution": "Hybrid E-commerce Platform (Web & Mobile), Ultra-Fast Local Delivery Integration, Alcohol Sales & Compliance Verification, Real-Time Inventory Management (4,000+ SKUs), Store Locator & Pickup Coordination, Loyalty Program & Customer Account Management",
+    "results": [],
+    "deliverables": [
+      "Responsive Squarespace Website",
+      "Native iOS & Android Mobile Apps",
+      "Delivery Logistics Dashboard",
+      "User Journey Maps & Wireframes",
+      "Brand Identity & Digital Assets"
+    ],
+    "technologies": [
+      "Squarespace",
+      "Flutter",
+      "Google Maps API",
+      "Stripe Integration",
+      "DoorDash Drive API",
+      "Firebase",
+      "Google Analytics",
+      "Mailchimp",
+      "HTML5/CSS3",
+      "JavaScript"
+    ],
+    "image": "https://dummyimages.netlify.app/portfolioimagaes/Go%20Grocer.jpg",
+    "sourceUrl": "https://aicyro.com/portfolio/go",
+    "meta": {
+      "location": "Chicago, IL",
+      "duration": "8 months",
+      "teamSize": "5 developers"
+    },
+    "id": "14"
+  },
+  {
+    "slug": "zipzap",
+    "title": "ZipZap - Flexible Car Subscription Platform",
+    "category": "Expert Services",
+    "summary": "ZipZap by GetGo is a Singapore car subscription service with flexible 6-month leases, all-inclusive fees, and a Subscribe & Share option.",
+    "overview": "ZipZap is a premier car subscription service in Singapore launched by GetGo, offering a flexible, no-deposit alternative to traditional car ownership. The platform allows users to lease vehicles for as short as 6 months with an all-inclusive fee covering insurance, road tax, and maintenance.",
+    "challenge": "",
+    "solution": "Car Subscription Management & Leasing Logic, Digital Inventory Catalog (New/Used, EV/Hybrid), 'Subscribe & Share' Fleet Integration (Beta), Financial Health & Identity Verification Workflows, Recurring Billing & All-Inclusive Payment Processing, Customer Support CRM Integration",
+    "results": [],
+    "deliverables": [
+      "Marketing Website & Lead Capture Portal",
+      "Subscriber Dashboard for Lease Management",
+      "GetGo Fleet API Integration Module",
+      "Admin Panel for Vehicle & Application Processing",
+      "Automated Billing & Invoicing System"
+    ],
+    "technologies": [
+      "Webflow",
+      "React.js",
+      "Node.js",
+      "AWS (Amazon Web Services)",
+      "PostgreSQL",
+      "Stripe API",
+      "GetGo Platform API",
+      "HubSpot CRM"
+    ],
+    "image": "https://dummyimages.netlify.app/portfolioimagaes/zipzap.jpg",
+    "sourceUrl": "https://aicyro.com/portfolio/zipzap",
+    "meta": {
+      "location": "Singapore",
+      "duration": "6 months",
+      "teamSize": "5 developers"
+    },
+    "id": "15"
+  }
+]
