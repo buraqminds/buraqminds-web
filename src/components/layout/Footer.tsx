@@ -63,27 +63,27 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-white/[0.06] bg-[var(--bg-800)]">
-      <div className="mx-auto max-w-7xl px-4 pt-[72px] pb-10 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-12">
+    <footer style={{ borderTop: "1px solid rgba(255,255,255,0.06)", background: "var(--bg-800)" }}>
+      {/* Main grid */}
+      <div style={{ maxWidth: "1280px", margin: "0 auto", padding: "72px 5% 48px" }}>
+        <div style={{
+          display: "grid",
+          gridTemplateColumns: "1.8fr 1fr 1fr 1fr 1.4fr",
+          gap: "48px",
+          alignItems: "start",
+        }}>
+
+          {/* Col 1 — Brand */}
           <div>
-            <Link
-              href="/"
-              className="mb-5 inline-flex items-center"
-              aria-label="Buraq Minds home"
-            >
-              <BrandLogo
-                className="h-12 w-auto object-contain sm:h-14"
-                width={140}
-                height={40}
-              />
+            <Link href="/" aria-label="Buraq Minds home" style={{ display: "inline-flex", marginBottom: "20px" }}>
+              <BrandLogo width={140} height={40} style={{ height: "48px", width: "auto", objectFit: "contain" }} />
             </Link>
-            <p className="mb-6 max-w-sm text-sm leading-relaxed text-[var(--text-secondary)]">
-              Buraq Minds engineers secure AI workflows, cloud-native
-              platforms, cybersecurity programs, and scalable software systems
-              for teams that need reliable execution.
+            <p style={{ fontSize: "13px", lineHeight: 1.75, color: "var(--text-secondary)", marginBottom: "24px", fontWeight: 300 }}>
+              Buraq Minds engineers secure AI workflows, cloud-native platforms,
+              cybersecurity programs, and scalable software systems for teams
+              that need reliable execution.
             </p>
-            <div className="flex items-center gap-3">
+            <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
               {socialLinks.map(({ label, href, icon: Icon }) => (
                 <a
                   key={label}
@@ -91,25 +91,28 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/[0.08] text-[var(--text-secondary)] transition-colors hover:border-[var(--color-primary-border)] hover:text-[var(--color-primary)]"
+                  style={{
+                    display: "flex", alignItems: "center", justifyContent: "center",
+                    width: "36px", height: "36px", borderRadius: "6px",
+                    border: "1px solid rgba(255,255,255,0.08)",
+                    color: "var(--text-secondary)", transition: "all 0.2s",
+                  }}
                 >
-                  <Icon className="h-4 w-4" />
+                  <Icon style={{ width: "16px", height: "16px" }} />
                 </a>
               ))}
             </div>
           </div>
 
+          {/* Col 2 — Services */}
           <div>
-            <h5 className="mb-5 text-sm font-semibold uppercase tracking-wider text-[var(--text-primary)]">
+            <h5 style={{ fontSize: "10px", fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--text-primary)", marginBottom: "20px" }}>
               Services
             </h5>
-            <ul className="space-y-3">
+            <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "10px" }}>
               {services.map((service) => (
                 <li key={service.slug}>
-                  <Link
-                    href={`/services/${service.slug}`}
-                    className="text-sm text-[var(--text-secondary)] transition-colors hover:text-[var(--color-primary)]"
-                  >
+                  <Link href={`/services/${service.slug}`} style={{ fontSize: "13px", color: "var(--text-secondary)", textDecoration: "none", fontWeight: 300 }}>
                     {service.title}
                   </Link>
                 </li>
@@ -117,17 +120,15 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Col 3 — Company */}
           <div>
-            <h5 className="mb-5 text-sm font-semibold uppercase tracking-wider text-[var(--text-primary)]">
+            <h5 style={{ fontSize: "10px", fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--text-primary)", marginBottom: "20px" }}>
               Company
             </h5>
-            <ul className="space-y-3">
+            <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "10px" }}>
               {companyLinks.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-[var(--text-secondary)] transition-colors hover:text-[var(--color-primary)]"
-                  >
+                  <Link href={link.href} style={{ fontSize: "13px", color: "var(--text-secondary)", textDecoration: "none", fontWeight: 300 }}>
                     {link.label}
                   </Link>
                 </li>
@@ -135,50 +136,72 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Col 4 — Legal */}
           <div>
-            <h5 className="mb-5 text-sm font-semibold uppercase tracking-wider text-[var(--text-primary)]">
+            <h5 style={{ fontSize: "10px", fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--text-primary)", marginBottom: "20px" }}>
               Legal
             </h5>
-            <ul className="space-y-3">
+            <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "10px" }}>
               {legalLinks.map((link) => (
                 <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-[var(--text-secondary)] transition-colors hover:text-[var(--color-primary)]"
-                  >
+                  <Link href={link.href} style={{ fontSize: "13px", color: "var(--text-secondary)", textDecoration: "none", fontWeight: 300 }}>
                     {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
+          </div>
+
+          {/* Col 5 — Get Started */}
+          <div>
+            <h5 style={{ fontSize: "10px", fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--text-primary)", marginBottom: "20px" }}>
+              Get Started
+            </h5>
+            <p style={{ fontSize: "13px", lineHeight: 1.7, color: "var(--text-secondary)", marginBottom: "20px", fontWeight: 300 }}>
+              Ready to build something extraordinary? Let&apos;s talk about your project.
+            </p>
+            <Link
+              href="/contact"
+              style={{
+                display: "flex", alignItems: "center", justifyContent: "center",
+                width: "100%", padding: "12px 20px",
+                background: "var(--color-primary)", color: "white",
+                borderRadius: "4px", fontSize: "13px", fontWeight: 600,
+                textDecoration: "none", letterSpacing: "0.03em",
+                textAlign: "center",
+              }}
+            >
+              Book Free Consultation
+            </Link>
+            <a
+              href="mailto:info@buraqminds.com"
+              style={{
+                display: "block", marginTop: "10px", fontSize: "12px",
+                color: "var(--text-muted)", textDecoration: "none", textAlign: "center",
+              }}
+            >
+              info@buraqminds.com
+            </a>
           </div>
         </div>
       </div>
 
-      <div className="border-t border-white/[0.06]">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 py-6 text-sm text-[var(--text-muted)] sm:flex-row sm:px-6 lg:px-8">
-          <p>© {year} Buraq Minds. All rights reserved.</p>
-          <div className="flex items-center gap-4">
-            <Link
-              href="/privacy"
-              className="transition-colors hover:text-[var(--text-primary)]"
-            >
-              Privacy
-            </Link>
-            <span aria-hidden="true">·</span>
-            <Link
-              href="/terms"
-              className="transition-colors hover:text-[var(--text-primary)]"
-            >
-              Terms
-            </Link>
-            <span aria-hidden="true">·</span>
-            <Link
-              href="/sitemap"
-              className="transition-colors hover:text-[var(--text-primary)]"
-            >
-              Sitemap
-            </Link>
+      {/* Bottom bar */}
+      <div style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+        <div style={{
+          maxWidth: "1280px", margin: "0 auto", padding: "16px 5%",
+          display: "flex", justifyContent: "space-between",
+          alignItems: "center", flexWrap: "wrap", gap: "12px",
+        }}>
+          <p style={{ fontSize: "12px", color: "var(--text-muted)" }}>
+            © {year} Buraq Minds. All rights reserved.
+          </p>
+          <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+            <Link href="/privacy" style={{ fontSize: "12px", color: "var(--text-muted)", textDecoration: "none" }}>Privacy</Link>
+            <span style={{ color: "var(--text-muted)" }}>·</span>
+            <Link href="/terms" style={{ fontSize: "12px", color: "var(--text-muted)", textDecoration: "none" }}>Terms</Link>
+            <span style={{ color: "var(--text-muted)" }}>·</span>
+            <Link href="/sitemap" style={{ fontSize: "12px", color: "var(--text-muted)", textDecoration: "none" }}>Sitemap</Link>
           </div>
         </div>
       </div>

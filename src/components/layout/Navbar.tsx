@@ -4,8 +4,9 @@ import BrandLogo from "@/components/layout/BrandLogo";
 import { services } from "@/content/services";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, Moon, Sun, X } from "lucide-react";
 import Link from "next/link";
+import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
 const pageLinks = [
@@ -19,6 +20,10 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -117,6 +122,30 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <button
+            onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+            aria-label="Toggle theme"
+            style={{
+              width: "36px",
+              height: "36px",
+              borderRadius: "4px",
+              border: "1px solid rgba(255,255,255,0.12)",
+              background: "transparent",
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexShrink: 0,
+              color: "var(--text-secondary)",
+            }}
+          >
+            {!mounted ? null : resolvedTheme === "dark" ? (
+              <Sun size={15} strokeWidth={1.5} />
+            ) : (
+              <Moon size={15} strokeWidth={1.5} />
+            )}
+          </button>
+
           <Link
             href="#estimator"
             className="hidden rounded-[4px] bg-[var(--color-primary)] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[var(--color-primary-light)] sm:inline-flex"

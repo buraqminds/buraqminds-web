@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Cormorant_Garamond, Outfit } from "next/font/google";
 import Footer from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
+import FloatingWidgets from "@/components/ui/FloatingWidgets";
 import { ThemeProvider } from "./providers";
 import "../styles/index.css";
 
@@ -53,6 +54,7 @@ export default function RootLayout({
           <Navbar />
           <main className="min-h-screen">{children}</main>
           <Footer />
+          <FloatingWidgets />
         </ThemeProvider>
       </body>
     </html>

@@ -30,6 +30,7 @@ const gridVariants = {
   hidden: {},
   visible: {
     transition: {
+      delayChildren: 0.1,
       staggerChildren: 0.1,
     },
   },
@@ -46,13 +47,7 @@ const cardVariants = {
 
 export default function TestimonialsSection() {
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.05 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="border-t border-white/[0.05] bg-[#111111] px-[5%] py-24 font-[family-name:var(--font-body)]"
-    >
+    <section className="border-t border-white/[0.05] bg-[#111111] px-[5%] py-24 font-[family-name:var(--font-body)]">
       <div className="mx-auto max-w-7xl">
         <div className="mx-auto mb-[60px] max-w-[600px] text-center">
           <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--color-primary)]">
@@ -106,6 +101,6 @@ export default function TestimonialsSection() {
           ))}
         </motion.div>
       </div>
-    </motion.section>
+    </section>
   );
 }

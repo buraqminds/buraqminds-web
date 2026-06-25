@@ -255,20 +255,46 @@ layer(base);
 */
 
 [data-theme="light"] {
+  --bg-900: #f5f2ef;
+  --bg-800: #edeae6;
+  --bg-700: #e4e0db;
+  --bg-600: #dbd7d2;
+  --text-primary: #1a1410;
+  --text-secondary: #5a5450;
+  --text-muted: #9a9490;
   --color-primary: #c0392b;
   --color-primary-light: #e74c3c;
-  --color-primary-dark: #7b241c;
-  --color-primary-alpha: rgba(192, 57, 43, 0.1);
-  --color-primary-border: rgba(192, 57, 43, 0.3);
-  --bg-900: #080808;
-  --bg-800: #111111;
-  --bg-700: #1c1c1c;
-  --bg-600: #242424;
-  --text-primary: #f0ece8;
-  --text-secondary: #8a8480;
-  --text-muted: #4a4440;
-  --font-heading: var(--font-cormorant-garamond), serif;
-  --font-body: var(--font-outfit), sans-serif;
+  --color-primary-dark: #922b21;
+  --color-primary-alpha: rgba(192,57,43,0.08);
+  --color-primary-border: rgba(192,57,43,0.25);
+}
+
+[data-theme="light"] body,
+[data-theme="light"] main,
+[data-theme="light"] section,
+[data-theme="light"] div,
+[data-theme="light"] nav,
+[data-theme="light"] footer {
+  color: var(--text-primary);
+}
+
+[data-theme="light"] [class*="bg-[#080808]"],
+[data-theme="light"] [class*="bg-[#0a0a0a]"],
+[data-theme="light"] [class*="bg-[#111111]"],
+[data-theme="light"] [class*="bg-[#141414]"],
+[data-theme="light"] [class*="bg-[#1a1a1a]"],
+[data-theme="light"] [class*="bg-[#1c1c1c]"],
+[data-theme="light"] [class*="bg-[#0d0d0d]"] {
+  background-color: var(--bg-800) !important;
+}
+
+[data-theme="light"] [class*="border-white"],
+[data-theme="light"] [class*="border-white/"] {
+  border-color: rgba(0,0,0,0.08) !important;
+}
+
+[data-theme="light"] [class*="text-white"] {
+  color: var(--text-primary) !important;
 }
 
 .dark {

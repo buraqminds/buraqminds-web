@@ -5,12 +5,8 @@ import Link from "next/link";
 
 export default function CTASection() {
   return (
-    <motion.section
+    <section
       id="cta"
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.05 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
       className="relative overflow-hidden border-y border-[var(--color-primary-border)] bg-[#111111] px-[5%] py-[100px] text-center font-[family-name:var(--font-body)]"
     >
       <div
@@ -51,6 +47,6 @@ export default function CTASection() {
           </a>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }

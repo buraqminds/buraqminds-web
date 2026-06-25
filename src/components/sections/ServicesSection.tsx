@@ -73,6 +73,7 @@ const gridVariants = {
   hidden: {},
   visible: {
     transition: {
+      delayChildren: 0.1,
       staggerChildren: 0.05,
     },
   },
@@ -89,12 +90,8 @@ const cardVariants = {
 
 export default function ServicesSection() {
   return (
-    <motion.section
+    <section
       id="services"
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.05 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
       className="border-t border-white/[0.05] bg-[#111111] px-[5%] pt-24 pb-0 font-[family-name:var(--font-body)]"
     >
       <div className="mx-auto max-w-7xl">
@@ -154,6 +151,6 @@ export default function ServicesSection() {
           ))}
         </motion.div>
       </div>
-    </motion.section>
+    </section>
   );
 }

@@ -1,7 +1,8 @@
 "use client"
 
+import PageLoader from "@/components/ui/PageLoader";
 import HeroSection from "@/components/sections/HeroSection";
-import TechnologyStackSection from "@/components/sections/TechnologyStackSection";
+import TechScrollStrip from "@/components/sections/TechScrollStrip";
 import StatsSection from "@/components/sections/StatsSection";
 import ServicesSection from "@/components/sections/ServicesSection";
 import WhySection from "@/components/sections/WhySection";
@@ -14,8 +15,9 @@ import CTASection from "@/components/sections/CTASection";
 export default function Home() {
   return (
     <main className="overflow-x-hidden bg-[#080808]">
+      <PageLoader />
       <HeroSection />
-      <TechnologyStackSection />
+      <TechScrollStrip />
       <StatsSection />
       <ServicesSection />
       <WhySection />

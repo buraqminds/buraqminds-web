@@ -250,12 +250,8 @@ export default function EstimatorSection() {
   ];
 
   return (
-    <motion.section
+    <section
       id="estimator"
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.05 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
       className="border-t border-white/[0.05] bg-[#080808] px-[5%] py-24 font-[family-name:var(--font-body)]"
     >
       <div className="mx-auto max-w-5xl text-center">
@@ -325,6 +321,6 @@ export default function EstimatorSection() {
           </div>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }

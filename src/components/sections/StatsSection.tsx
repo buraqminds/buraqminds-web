@@ -1,6 +1,6 @@
 "use client";
 
-import { animate, motion, useInView } from "framer-motion";
+import { animate, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 type Stat = {
@@ -65,13 +65,7 @@ function StatCell({ stat, isLast }: { stat: Stat; isLast: boolean }) {
 
 export default function StatsSection() {
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.05 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="border-t border-white/[0.05] bg-[#080808] font-[family-name:var(--font-body)]"
-    >
+    <section className="border-t border-white/[0.05] bg-[#080808] font-[family-name:var(--font-body)]">
       <div className="grid grid-cols-1 lg:grid-cols-4">
         {stats.map((stat, index) => (
           <StatCell
@@ -81,6 +75,6 @@ export default function StatsSection() {
           />
         ))}
       </div>
-    </motion.section>
+    </section>
   );
 }

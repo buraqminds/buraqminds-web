@@ -1,7 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
-
 const steps = [
   {
     title: "Discovery",
@@ -27,13 +25,7 @@ const steps = [
 
 export default function ProcessSection() {
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.05 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="border-t border-white/[0.05] bg-[#111111] px-[5%] py-24 font-[family-name:var(--font-body)]"
-    >
+    <section className="border-t border-white/[0.05] bg-[#111111] px-[5%] py-24 font-[family-name:var(--font-body)]">
       <div className="mx-auto max-w-7xl">
         <div className="mx-auto mb-[72px] max-w-3xl text-center">
           <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--color-primary)]">
@@ -67,6 +59,6 @@ export default function ProcessSection() {
           ))}
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }

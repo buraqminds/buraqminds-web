@@ -1,7 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
-
 const reasons = [
   {
     title: "Speed without compromise",
@@ -27,13 +25,7 @@ const reasons = [
 
 export default function WhySection() {
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.05 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="border-t border-white/[0.05] bg-[#080808] px-[5%] py-24 font-[family-name:var(--font-body)]"
-    >
+    <section className="border-t border-white/[0.05] bg-[#080808] px-[5%] py-24 font-[family-name:var(--font-body)]">
       <div className="mx-auto grid max-w-7xl gap-20 lg:grid-cols-2 lg:items-center">
         <div className="relative flex min-h-[420px] flex-col justify-end rounded-[4px] border border-[var(--color-primary-border)] bg-[#1c1c1c] p-12 transition-all duration-[250ms] ease-in-out hover:-translate-y-[3px] hover:border-[var(--color-primary-border)]">
           <span className="absolute right-6 top-6 rounded-full border border-[var(--color-primary-border)] px-3.5 py-1 text-[11px] text-[var(--color-primary)]">
@@ -81,6 +73,6 @@ export default function WhySection() {
           </div>
         </div>
       </div>
-    </motion.section>
+    </section>
   );
 }

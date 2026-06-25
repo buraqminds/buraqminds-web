@@ -20,6 +20,7 @@ const contentVariants = {
   hidden: {},
   visible: {
     transition: {
+      delayChildren: 0.1,
       staggerChildren: 0.1,
     },
   },
@@ -120,13 +121,7 @@ export default function HeroSection() {
   }, [mounted]);
 
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.05 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="relative flex min-h-screen items-center justify-center overflow-hidden border-t border-white/[0.05] bg-[#080808] px-[5%] py-24"
-    >
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden border-t border-white/[0.05] bg-[#080808] px-[5%] py-24">
       {mounted && (
         <canvas
           ref={canvasRef}
@@ -134,6 +129,10 @@ export default function HeroSection() {
           className="pointer-events-none absolute inset-0 z-0 h-full w-full"
         />
       )}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(ellipse_80%_60%_at_50%_40%,rgba(192,57,43,0.08)_0%,transparent_70%)]"
+      />
 
       <motion.div
         variants={contentVariants}
@@ -189,6 +188,6 @@ export default function HeroSection() {
           </Link>
         </motion.div>
       </motion.div>
-    </motion.section>
+    </section>
   );
 }
