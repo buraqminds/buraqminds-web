@@ -3,8 +3,8 @@ import Link from "next/link";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Sign Up Page | Free Next.js Template for Startup and SaaS",
-  description: "This is Sign Up Page for Startup Nextjs Template",
+  title: "Create an Account | Buraq Minds",
+  description: "Create a Buraq Minds account.",
   // other metadata
 };
 
@@ -177,7 +177,7 @@ const SignupPage = () => {
                   </div>
                 </form>
                 <p className="text-body-color text-center text-base font-medium">
-                  Already using Startup?{" "}
+                  Already using Buraq Minds?{" "}
                   <Link href="/signin" className="text-primary hover:underline">
                     Sign in
                   </Link>

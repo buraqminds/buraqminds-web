@@ -7,8 +7,8 @@ import Image from "next/image";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blog Details Page | Free Next.js Template for Startup and SaaS",
-  description: "This is Blog Details Page for Startup Nextjs Template",
+  title: "Blog Details | Buraq Minds",
+  description: "Read Buraq Minds insights on secure AI and software systems.",
   // other metadata
 };
 
@@ -425,7 +425,7 @@ const BlogSidebarPage = () => {
                       href="#0"
                       className="text-body-color hover:text-primary mb-3 inline-block text-base font-medium"
                     >
-                      Startup
+                      SaaS
                     </a>
                   </li>
                   <li>
@@ -454,7 +454,7 @@ const BlogSidebarPage = () => {
                   <TagButton text="Themes" />
                   <TagButton text="UI Kit" />
                   <TagButton text="Tailwind" />
-                  <TagButton text="Startup" />
+                  <TagButton text="SaaS" />
                   <TagButton text="Business" />
                 </div>
               </div>

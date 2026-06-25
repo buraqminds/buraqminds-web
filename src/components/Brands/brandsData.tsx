@@ -10,8 +10,8 @@ const brandsData: Brand[] = [
   },
   {
     id: 1,
-    name: "UIdeck",
-    href: "https://uideck.com",
+    name: "SecureStack",
+    href: "#",
     image: "/images/brands/uideck.svg",
     imageLight: "/images/brands/uideck-light.svg",
   },

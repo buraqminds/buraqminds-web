@@ -1,25 +1,7 @@
 "use client";
 
+import { processSteps } from "@/content/process";
 import { motion } from "framer-motion";
-
-const steps = [
-  {
-    title: "Discover",
-    description: "We map your goals, users, risks, and technical requirements into a focused product plan.",
-  },
-  {
-    title: "Design",
-    description: "We shape scalable architecture, intuitive UX, and a delivery roadmap aligned with your business.",
-  },
-  {
-    title: "Build",
-    description: "Our engineers ship clean, secure, and tested software through transparent delivery cycles.",
-  },
-  {
-    title: "Scale",
-    description: "We optimize, monitor, and extend your platform as adoption, data, and complexity grow.",
-  },
-];
 
 const containerVariants = {
   hidden: {},
@@ -43,9 +25,13 @@ export default function ProcessSection() {
   return (
     <section
       id="process"
-      className="bg-[var(--bg-900)] px-6 py-[100px] font-[family-name:var(--font-body)] sm:px-8 lg:px-12"
+      className="relative overflow-hidden bg-[var(--bg-900)] px-6 py-[110px] font-[family-name:var(--font-body)] sm:px-8 lg:px-12"
     >
-      <div className="mx-auto max-w-7xl">
+      <div
+        aria-hidden="true"
+        className="absolute left-1/2 top-0 h-[26rem] w-[26rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(192,57,43,0.07),transparent_70%)]"
+      />
+      <div className="relative z-10 mx-auto max-w-7xl">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -74,13 +60,13 @@ export default function ProcessSection() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
             variants={containerVariants}
-            className="grid gap-0 border-y border-white/[0.06] md:grid-cols-2 lg:grid-cols-4"
+            className="grid gap-0 rounded-[4px] border-y border-white/[0.06] bg-black/10 md:grid-cols-2 lg:grid-cols-4"
           >
-            {steps.map((step, index) => (
+            {processSteps.map((step, index) => (
               <motion.article
                 key={step.title}
                 variants={itemVariants}
-                className="group relative min-h-[260px] border-b border-r border-white/[0.06] bg-transparent p-8 transition-colors duration-300 last:border-r-0 hover:bg-[var(--bg-800)] md:[&:nth-child(2)]:border-r-0 lg:[&:nth-child(2)]:border-r lg:[&:nth-child(n)]:border-b-0"
+                className="group relative min-h-[260px] border-b border-r border-white/[0.06] bg-[rgba(20,20,20,0.35)] p-8 transition-colors duration-300 last:border-r-0 hover:bg-[var(--bg-800)] md:[&:nth-child(2)]:border-r-0 lg:[&:nth-child(2)]:border-r lg:[&:nth-child(n)]:border-b-0"
               >
                 <div className="relative z-10 mb-10 flex h-16 w-16 items-center justify-center rounded-full border border-[var(--color-primary-border)] bg-transparent font-[family-name:var(--font-heading)] text-xl text-[var(--color-primary)] transition-colors duration-300 group-hover:bg-[var(--color-primary)] group-hover:text-white">
                   {String(index + 1).padStart(2, "0")}

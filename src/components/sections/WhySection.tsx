@@ -38,16 +38,24 @@ export default function WhySection() {
   return (
     <section
       id="why"
-      className="bg-[var(--bg-800)] px-6 py-[100px] font-[family-name:var(--font-body)] sm:px-8 lg:px-12"
+      className="relative overflow-hidden bg-[var(--bg-800)] px-6 py-[110px] font-[family-name:var(--font-body)] sm:px-8 lg:px-12"
     >
-      <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-2 lg:items-center">
+      <div
+        aria-hidden="true"
+        className="absolute right-[-10rem] top-1/2 h-[28rem] w-[28rem] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(192,57,43,0.08),transparent_70%)]"
+      />
+      <div className="relative z-10 mx-auto grid max-w-7xl gap-12 lg:grid-cols-2 lg:items-center">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.35 }}
           variants={fadeUp}
-          className="relative rounded-[4px] border border-[var(--color-primary-border)] bg-[var(--bg-700)] p-8 sm:p-12"
+          className="relative overflow-hidden rounded-[4px] border border-[var(--color-primary-border)] bg-[linear-gradient(135deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01)),var(--bg-700)] p-8 backdrop-blur-sm sm:p-12"
         >
+          <div
+            aria-hidden="true"
+            className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[var(--color-primary)] to-transparent opacity-60"
+          />
           <div className="absolute top-6 right-6 border border-[var(--color-primary-border)] bg-[var(--color-primary-alpha)] px-4 py-2 text-[10px] font-semibold tracking-[0.12em] text-[var(--color-primary)] uppercase">
             30–45 days to MVP
           </div>
@@ -87,7 +95,11 @@ export default function WhySection() {
 
           <div className="mt-10 space-y-7">
             {bullets.map((bullet) => (
-              <motion.div key={bullet.title} variants={fadeUp} className="flex gap-5">
+              <motion.div
+                key={bullet.title}
+                variants={fadeUp}
+                className="group relative flex gap-5 border-b border-white/[0.06] pb-6 last:border-b-0"
+              >
                 <span className="mt-1 h-12 w-[3px] shrink-0 bg-[var(--color-primary)]" />
                 <div>
                   <h3 className="font-[family-name:var(--font-heading)] text-lg leading-none font-semibold tracking-[-0.4px] text-[var(--text-primary)]">

@@ -1,5 +1,7 @@
+import BrandLogo from "@/components/layout/BrandLogo";
 import { siteConfig } from "@/lib/config";
-import Image from "next/image";
+import { services } from "@/content/services";
+import { siteContent } from "@/content/site";
 import Link from "next/link";
 import type { SVGProps } from "react";
 
@@ -40,27 +42,19 @@ function TwitterIcon(props: SVGProps<SVGSVGElement>) {
 const tickerItems = [
   {
     platform: "LinkedIn",
-    text: "Excited to share how we helped a fintech startup ship a secure SaaS MVP in 90 days.",
+    text: "Secure SaaS MVP delivered for a FinTech team in 90 days.",
   },
   {
-    platform: "Twitter",
-    text: "Security-first engineering isn't optional — it's how modern products earn trust.",
-  },
-  {
-    platform: "Instagram",
-    text: "Behind the scenes with the Buraq Minds team building AI-powered solutions.",
+    platform: "X",
+    text: "Security-first engineering for AI-powered products.",
   },
   {
     platform: "Facebook",
-    text: "We're expanding our cybersecurity practice — VAPT assessments now available.",
+    text: "VAPT, cloud hardening, and SOC 2 readiness for growing teams.",
   },
   {
-    platform: "LinkedIn",
-    text: "Cloud & DevOps case study: 40% faster deployments with automated CI/CD pipelines.",
-  },
-  {
-    platform: "Twitter",
-    text: "Intelligence. Security. Innovation. — that's the Buraq Minds way.",
+    platform: "Instagram",
+    text: "Building software systems with intelligence, security, and polish.",
   },
 ] as const;
 
@@ -91,8 +85,8 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-white/[0.06] bg-[var(--bg-800)]">
-      <div className="overflow-hidden border-b border-white/[0.06] py-3">
-        <div className="footer-marquee-track flex w-max items-center gap-8">
+      <div className="overflow-hidden border-b border-white/[0.06] bg-black/10 py-3">
+        <div className="footer-marquee-track flex w-max items-center gap-16">
           {marqueeItems.map((item, index) => (
             <div
               key={`${item.platform}-${index}`}
@@ -114,17 +108,17 @@ export default function Footer() {
           <div>
             <Link
               href="/"
-              className="mb-5 inline-block"
+              className="mb-5 inline-flex items-center"
+              aria-label="Buraq Minds home"
             >
-              <Image
-                src="/logo.svg"
-                alt="Buraq Minds"
-                width={120}
-                height={32}
+              <BrandLogo
+                className="h-12 w-auto object-contain sm:h-14"
+                width={240}
+                height={56}
               />
             </Link>
             <p className="mb-6 max-w-sm text-sm leading-relaxed text-[var(--text-secondary)]">
-              {siteConfig.description}
+              {siteContent.description}
             </p>
             <div className="flex items-center gap-3">
               {socialLinks.map(({ label, href, icon: Icon }) => (
@@ -147,7 +141,7 @@ export default function Footer() {
               Services
             </h5>
             <ul className="space-y-3">
-              {siteConfig.services.map((service) => (
+              {services.map((service) => (
                 <li key={service.slug}>
                   <Link
                     href={`/services/${service.slug}`}

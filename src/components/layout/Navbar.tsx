@@ -1,10 +1,10 @@
 "use client";
 
-import { siteConfig } from "@/lib/config";
+import BrandLogo from "@/components/layout/BrandLogo";
+import { services } from "@/content/services";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Menu, Moon, Sun, X } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
@@ -46,7 +46,7 @@ export default function Navbar() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 z-50 h-[72px] w-full transition-all duration-300",
+        "fixed top-0 left-0 z-50 h-16 w-full transition-all duration-300 sm:h-[68px]",
         scrolled
           ? "border-b border-white/[0.06] bg-[var(--bg-900)]/95 backdrop-blur-xl"
           : "bg-transparent",
@@ -55,16 +55,10 @@ export default function Navbar() {
       <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link
           href="/"
-          className="flex h-10 items-center"
+          className="flex h-10 w-[132px] items-center overflow-visible sm:h-12 sm:w-[150px]"
           aria-label="Buraq Minds home"
         >
-          <Image
-            src="/logo.svg"
-            alt="Buraq Minds"
-            width={130}
-            height={36}
-            priority
-          />
+          <BrandLogo priority />
         </Link>
 
         <nav className="hidden items-center gap-6 lg:flex">
@@ -102,7 +96,7 @@ export default function Navbar() {
                   className="absolute left-1/2 top-full z-50 mt-3 w-[560px] -translate-x-1/2 rounded-[4px] border border-white/[0.08] bg-[var(--bg-800)]/95 p-2 backdrop-blur-xl"
                 >
                   <div className="grid grid-cols-2 gap-px bg-white/[0.06]">
-                    {siteConfig.services.map((service) => (
+                    {services.map((service) => (
                       <Link
                         key={service.slug}
                         href={`/services/${service.slug}`}
@@ -182,7 +176,7 @@ export default function Navbar() {
                 Services
               </div>
 
-              {siteConfig.services.map((service) => (
+              {services.map((service) => (
                 <Link
                   key={`mobile-all-${service.slug}`}
                   href={`/services/${service.slug}`}
