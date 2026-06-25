@@ -1,58 +1,33 @@
+import AIProjectEstimatorSection from "@/components/sections/AIProjectEstimatorSection";
+import CaseStudiesSection from "@/components/sections/CaseStudiesSection";
+import FinalCTASection from "@/components/sections/FinalCTASection";
 import HeroSection from "@/components/sections/HeroSection";
+import ProcessSection from "@/components/sections/ProcessSection";
+import ServicesSection from "@/components/sections/ServicesSection";
+import StatsSection from "@/components/sections/StatsSection";
+import TestimonialsSection from "@/components/sections/TestimonialsSection";
+import WhyBuraqMindsSection from "@/components/sections/WhyBuraqMindsSection";
 
 export default function Home() {
   return (
     <>
       <HeroSection />
 
-      <div
-        id="stats"
-        className="flex h-40 items-center justify-center bg-[var(--bg-800)] text-[var(--text-muted)]"
-      >
-        stats
-      </div>
+      <StatsSection />
 
-      <div
-        id="services"
-        className="flex h-96 items-center justify-center bg-[var(--bg-900)] text-[var(--text-muted)]"
-      >
-        services
-      </div>
+      <ServicesSection />
 
-      <div
-        id="why"
-        className="flex h-96 items-center justify-center bg-[var(--bg-800)] text-[var(--text-muted)]"
-      >
-        why
-      </div>
+      <WhyBuraqMindsSection />
 
-      <div
-        id="process"
-        className="flex h-80 items-center justify-center bg-[var(--bg-900)] text-[var(--text-muted)]"
-      >
-        process
-      </div>
+      <ProcessSection />
 
-      <div
-        id="testimonials"
-        className="flex h-96 items-center justify-center bg-[var(--bg-800)] text-[var(--text-muted)]"
-      >
-        testimonials
-      </div>
+      <CaseStudiesSection />
 
-      <div
-        id="estimator"
-        className="flex h-96 items-center justify-center bg-[var(--bg-900)] text-[var(--text-muted)]"
-      >
-        estimator
-      </div>
+      <AIProjectEstimatorSection />
 
-      <div
-        id="cta"
-        className="flex h-60 items-center justify-center bg-[var(--bg-800)] text-[var(--text-muted)]"
-      >
-        cta
-      </div>
+      <TestimonialsSection />
+
+      <FinalCTASection />
     </>
   );
 }
