@@ -1,8 +1,8 @@
 "use client"
 
 import HeroSection from "@/components/sections/HeroSection";
-import StatsSection from "@/components/sections/StatsSection";
 import TechnologyStackSection from "@/components/sections/TechnologyStackSection";
+import StatsSection from "@/components/sections/StatsSection";
 import ServicesSection from "@/components/sections/ServicesSection";
 import WhySection from "@/components/sections/WhySection";
 import ProcessSection from "@/components/sections/ProcessSection";
@@ -13,7 +13,7 @@ import CTASection from "@/components/sections/CTASection";
 
 export default function Home() {
   return (
-    <main className="overflow-x-hidden">
+    <main className="overflow-x-hidden bg-[#080808]">
       <HeroSection />
       <TechnologyStackSection />
       <StatsSection />

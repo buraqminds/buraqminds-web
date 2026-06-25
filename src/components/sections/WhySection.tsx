@@ -2,118 +2,85 @@
 
 import { motion } from "framer-motion";
 
-const bullets = [
+const reasons = [
   {
-    title: "Speed",
+    title: "Speed without compromise",
     description:
-      "Rapid delivery cycles that move from concept to launch without sacrificing product quality.",
-  },
-  {
-    title: "Security-first",
-    description:
-      "Every architecture, workflow, and release is designed with resilience and risk reduction in mind.",
+      "SaaS MVPs shipped in 30-45 days without cutting corners on architecture or security.",
   },
   {
-    title: "Transparent",
+    title: "Security-first by design",
     description:
-      "Clear communication, predictable milestones, and visibility across the entire build process.",
+      "VAPT, compliance, and threat modeling built into every sprint from day one.",
   },
   {
-    title: "Long-term Support",
+    title: "AI-native delivery",
     description:
-      "Ongoing engineering partnership for scaling, optimization, maintenance, and future growth.",
+      "LLMs, RAG pipelines, and ML systems integrated where they create measurable business value.",
   },
-];
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] as const },
+  {
+    title: "Transparent partnership",
+    description:
+      "Weekly sprints, real-time progress, zero surprises from scoping to handoff.",
   },
-};
+] as const;
 
 export default function WhySection() {
   return (
-    <section
-      id="why"
-      className="relative overflow-hidden bg-[var(--bg-800)] px-6 py-[110px] font-[family-name:var(--font-body)] sm:px-8 lg:px-12"
+    <motion.section
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.05 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="border-t border-white/[0.05] bg-[#080808] px-[5%] py-24 font-[family-name:var(--font-body)]"
     >
-      <div
-        aria-hidden="true"
-        className="absolute right-[-10rem] top-1/2 h-[28rem] w-[28rem] -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(192,57,43,0.08),transparent_70%)]"
-      />
-      <div className="relative z-10 mx-auto grid max-w-7xl gap-12 lg:grid-cols-2 lg:items-center">
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.35 }}
-          variants={fadeUp}
-          className="relative overflow-hidden rounded-[4px] border border-[var(--color-primary-border)] bg-[linear-gradient(135deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01)),var(--bg-700)] p-8 backdrop-blur-sm sm:p-12"
-        >
-          <div
-            aria-hidden="true"
-            className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[var(--color-primary)] to-transparent opacity-60"
-          />
-          <div className="absolute top-6 right-6 border border-[var(--color-primary-border)] bg-[var(--color-primary-alpha)] px-4 py-2 text-[10px] font-semibold tracking-[0.12em] text-[var(--color-primary)] uppercase">
-            30–45 days to MVP
+      <div className="mx-auto grid max-w-7xl gap-20 lg:grid-cols-2 lg:items-center">
+        <div className="relative flex min-h-[420px] flex-col justify-end rounded-[4px] border border-[var(--color-primary-border)] bg-[#1c1c1c] p-12 transition-all duration-[250ms] ease-in-out hover:-translate-y-[3px] hover:border-[var(--color-primary-border)]">
+          <span className="absolute right-6 top-6 rounded-full border border-[var(--color-primary-border)] px-3.5 py-1 text-[11px] text-[var(--color-primary)]">
+            30–45 Days to MVP
+          </span>
+          <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--color-primary)]">
+            Our Impact
+          </p>
+          <div className="font-[family-name:var(--font-heading)] text-[96px] font-semibold leading-none tracking-[-4px] text-[var(--color-primary)]">
+            100+
           </div>
+          <h3 className="mt-2 font-[family-name:var(--font-heading)] text-xl text-[var(--text-primary)]">
+            Projects delivered across 4 continents
+          </h3>
+          <p className="mt-1 text-[13px] text-[var(--text-secondary)]">
+            US · UK · Europe · GCC
+          </p>
+        </div>
 
-          <div className="pt-10">
-            <div className="font-[family-name:var(--font-heading)] text-[96px] leading-none font-semibold text-[var(--color-primary)]">
-              100+
-            </div>
-            <h3 className="mt-6 max-w-sm font-[family-name:var(--font-heading)] text-3xl leading-none font-semibold tracking-[-1px] text-[var(--text-primary)]">
-              Projects across 4 continents
-            </h3>
-            <p className="mt-4 text-xs font-light tracking-[0.14em] text-[var(--text-muted)] uppercase">
-              US · UK · Europe · GCC
-            </p>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.25 }}
-          transition={{ staggerChildren: 0.1 }}
-          className="lg:pl-8"
-        >
-          <motion.p
-            variants={fadeUp}
-            className="mb-4 text-[10px] font-semibold tracking-[0.2em] text-[var(--color-primary)] uppercase"
-          >
+        <div>
+          <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--color-primary)]">
             Why Buraq Minds
-          </motion.p>
-          <motion.h2
-            variants={fadeUp}
-            className="max-w-2xl font-[family-name:var(--font-heading)] text-4xl leading-none font-semibold tracking-[-2px] text-[var(--text-primary)] sm:text-5xl lg:text-6xl"
+          </p>
+          <h2
+            className="font-[family-name:var(--font-heading)] font-semibold leading-[1.05] tracking-[-1.5px] text-[var(--text-primary)]"
+            style={{ fontSize: "clamp(28px, 3.5vw, 48px)" }}
           >
             Engineering growth with security and intelligence
-          </motion.h2>
+          </h2>
 
-          <div className="mt-10 space-y-7">
-            {bullets.map((bullet) => (
-              <motion.div
-                key={bullet.title}
-                variants={fadeUp}
-                className="group relative flex gap-5 border-b border-white/[0.06] pb-6 last:border-b-0"
-              >
-                <span className="mt-1 h-12 w-[3px] shrink-0 bg-[var(--color-primary)]" />
+          <div className="mt-9 grid gap-6">
+            {reasons.map((reason) => (
+              <article key={reason.title} className="flex items-start gap-4">
+                <span className="mt-1 h-12 w-[3px] shrink-0 rounded-[2px] bg-[var(--color-primary)]" />
                 <div>
-                  <h3 className="font-[family-name:var(--font-heading)] text-lg leading-none font-semibold tracking-[-0.4px] text-[var(--text-primary)]">
-                    {bullet.title}
+                  <h3 className="font-[family-name:var(--font-heading)] text-lg font-semibold text-[var(--text-primary)]">
+                    {reason.title}
                   </h3>
-                  <p className="mt-2 max-w-xl text-[13px] leading-6 font-light text-[var(--text-secondary)]">
-                    {bullet.description}
+                  <p className="mt-1 text-[13px] font-light leading-[1.65] text-[var(--text-secondary)]">
+                    {reason.description}
                   </p>
                 </div>
-              </motion.div>
+              </article>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

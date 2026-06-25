@@ -64,18 +64,6 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-white/[0.06] bg-[var(--bg-800)]">
-      <div className="border-b border-white/[0.06] bg-black/10 px-4 py-4 sm:px-6 lg:px-8">
-        <div className="mx-auto flex max-w-7xl flex-col gap-2 text-center sm:flex-row sm:items-center sm:justify-between sm:text-left">
-          <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--color-primary)]">
-            Intelligence. Security. Innovation.
-          </span>
-          <span className="text-sm leading-6 text-[var(--text-secondary)]">
-            Secure AI, cybersecurity, cloud, and software delivery for teams
-            building systems that must perform in production.
-          </span>
-        </div>
-      </div>
-
       <div className="mx-auto max-w-7xl px-4 pt-[72px] pb-10 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-12">
           <div>
@@ -86,8 +74,8 @@ export default function Footer() {
             >
               <BrandLogo
                 className="h-12 w-auto object-contain sm:h-14"
-                width={240}
-                height={56}
+                width={140}
+                height={40}
               />
             </Link>
             <p className="mb-6 max-w-sm text-sm leading-relaxed text-[var(--text-secondary)]">

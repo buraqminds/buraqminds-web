@@ -152,7 +152,8 @@ layer(base);
 */
 
 @theme inline {
-  --font-heading: var(--font-sans);
+  --font-heading: var(--font-cormorant-garamond), serif;
+  --font-body: var(--font-outfit), sans-serif;
   --font-sans: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -235,16 +236,18 @@ layer(base);
   /* BuraqMinds theme */
   --color-primary: #c0392b;
   --color-primary-light: #e74c3c;
-  --color-primary-dark: #922b21;
-  --color-primary-alpha: rgba(192, 57, 43, 0.12);
-  --color-primary-border: rgba(192, 57, 43, 0.25);
-  --bg-900: #0d0d0d;
-  --bg-800: #141414;
-  --bg-700: #1a1a1a;
-  --bg-600: #1f1f1f;
-  --text-primary: #f5f5f0;
-  --text-secondary: #9a9090;
-  --text-muted: #4a4545;
+  --color-primary-dark: #7b241c;
+  --color-primary-alpha: rgba(192, 57, 43, 0.1);
+  --color-primary-border: rgba(192, 57, 43, 0.3);
+  --bg-900: #080808;
+  --bg-800: #111111;
+  --bg-700: #1c1c1c;
+  --bg-600: #242424;
+  --text-primary: #f0ece8;
+  --text-secondary: #8a8480;
+  --text-muted: #4a4440;
+  --font-heading: var(--font-cormorant-garamond), serif;
+  --font-body: var(--font-outfit), sans-serif;
 }
 
 /*
@@ -254,16 +257,18 @@ layer(base);
 [data-theme="light"] {
   --color-primary: #c0392b;
   --color-primary-light: #e74c3c;
-  --color-primary-dark: #922b21;
-  --color-primary-alpha: rgba(192, 57, 43, 0.12);
-  --color-primary-border: rgba(192, 57, 43, 0.25);
-  --bg-900: #f8f5f2;
-  --bg-800: #f0ece8;
-  --bg-700: #ffffff;
-  --bg-600: #f0ece8;
-  --text-primary: #0d0d0d;
-  --text-secondary: #4a4545;
-  --text-muted: #9a9090;
+  --color-primary-dark: #7b241c;
+  --color-primary-alpha: rgba(192, 57, 43, 0.1);
+  --color-primary-border: rgba(192, 57, 43, 0.3);
+  --bg-900: #080808;
+  --bg-800: #111111;
+  --bg-700: #1c1c1c;
+  --bg-600: #242424;
+  --text-primary: #f0ece8;
+  --text-secondary: #8a8480;
+  --text-muted: #4a4440;
+  --font-heading: var(--font-cormorant-garamond), serif;
+  --font-body: var(--font-outfit), sans-serif;
 }
 
 .dark {
@@ -311,4 +316,45 @@ layer(base);
 
 .footer-marquee-track {
   animation: footer-marquee 72s linear infinite;
+}
+
+#stats {
+  background: var(--bg-800) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+#services {
+  background: var(--bg-900) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+#why {
+  background: var(--bg-800) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+#process {
+  background: var(--bg-900) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+#case-studies {
+  background: var(--bg-800) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+#testimonials {
+  background: var(--bg-900) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+#estimator {
+  background: var(--bg-800) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+#cta {
+  background: var(--bg-900) !important;
+  border-top: 1px solid var(--color-primary-border) !important;
+  border-bottom: 1px solid var(--color-primary-border) !important;
 }

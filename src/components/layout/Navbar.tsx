@@ -4,9 +4,8 @@ import BrandLogo from "@/components/layout/BrandLogo";
 import { services } from "@/content/services";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown, Menu, Moon, Sun, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import Link from "next/link";
-import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
 const pageLinks = [
@@ -20,12 +19,8 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
-    setMounted(true);
-
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
@@ -35,10 +30,6 @@ export default function Navbar() {
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
 
   const navLinkClass =
     "text-sm font-medium text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]";
@@ -126,19 +117,6 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <button
-            type="button"
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-            className="flex h-10 w-10 items-center justify-center rounded-[4px] border border-white/[0.08] text-[var(--text-primary)] transition-colors hover:border-[var(--color-primary-border)] hover:text-[var(--color-primary)]"
-          >
-            {mounted && theme === "dark" ? (
-              <Sun className="h-5 w-5" />
-            ) : (
-              <Moon className="h-5 w-5" />
-            )}
-          </button>
-
           <Link
             href="#estimator"
             className="hidden rounded-[4px] bg-[var(--color-primary)] px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[var(--color-primary-light)] sm:inline-flex"

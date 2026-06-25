@@ -1,184 +1,375 @@
 "use client";
 
-import { caseStudies } from "@/content/case-studies";
+import { projects } from "@/content/projects";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-const containerVariants = {
+const gridVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.12,
+      staggerChildren: 0.08,
     },
   },
 };
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] as const },
+    transition: { duration: 0.5, ease: "easeOut" as const },
   },
 };
 
+function NeuralNetworkSvg() {
+  const columns = [
+    [
+      [54, 54],
+      [54, 100],
+      [54, 146],
+    ],
+    [
+      [150, 38],
+      [150, 78],
+      [150, 122],
+      [150, 162],
+    ],
+    [
+      [246, 54],
+      [246, 100],
+      [246, 146],
+    ],
+  ];
+  const nodes = columns.flat();
+
+  return (
+    <svg viewBox="0 0 300 200" className="h-full w-full">
+      <rect width="300" height="200" fill="#1c1c1c" />
+      {columns[0].flatMap((start) =>
+        columns[1].map((end) => (
+          <line
+            key={`${start.join("-")}-${end.join("-")}`}
+            x1={start[0]}
+            y1={start[1]}
+            x2={end[0]}
+            y2={end[1]}
+            stroke="rgba(192,57,43,0.2)"
+            strokeWidth="1"
+          />
+        )),
+      )}
+      {columns[1].flatMap((start) =>
+        columns[2].map((end) => (
+          <line
+            key={`${start.join("-")}-${end.join("-")}`}
+            x1={start[0]}
+            y1={start[1]}
+            x2={end[0]}
+            y2={end[1]}
+            stroke="rgba(192,57,43,0.2)"
+            strokeWidth="1"
+          />
+        )),
+      )}
+      {nodes.map(([cx, cy], index) => (
+        <circle
+          key={`${cx}-${cy}-${index}`}
+          cx={cx}
+          cy={cy}
+          r="8"
+          fill="rgba(192,57,43,0.3)"
+          stroke="rgba(192,57,43,0.6)"
+        />
+      ))}
+      {nodes.filter((_, index) => index % 3 === 0).map(([cx, cy], index) => (
+        <circle key={`pulse-${index}`} cx={cx} cy={cy} r="2" fill="#c0392b" />
+      ))}
+    </svg>
+  );
+}
+
+function SecuritySvg() {
+  return (
+    <svg viewBox="0 0 300 200" className="h-full w-full">
+      <rect width="300" height="200" fill="#1c1c1c" />
+      {[44, 64, 84].map((radius) => (
+        <circle
+          key={radius}
+          cx="150"
+          cy="100"
+          r={radius}
+          fill="none"
+          stroke="rgba(192,57,43,0.15)"
+        />
+      ))}
+      <path
+        d="M150 48 L190 64 V100 C190 130 172 152 150 162 C128 152 110 130 110 100 V64 Z"
+        fill="none"
+        stroke="var(--color-primary)"
+        strokeWidth="1.5"
+      />
+      <rect
+        x="132"
+        y="96"
+        width="36"
+        height="28"
+        rx="4"
+        fill="none"
+        stroke="var(--color-primary)"
+        strokeWidth="1.5"
+      />
+      <path
+        d="M138 96 V86 C138 78 144 72 150 72 C156 72 162 78 162 86 V96"
+        fill="none"
+        stroke="var(--color-primary)"
+        strokeWidth="1.5"
+      />
+    </svg>
+  );
+}
+
+function CloudSvg() {
+  const hexagons = [
+    [125, 82],
+    [175, 82],
+    [150, 126],
+  ];
+
+  return (
+    <svg viewBox="0 0 300 200" className="h-full w-full">
+      <rect width="300" height="200" fill="#1c1c1c" />
+      <line x1="125" y1="82" x2="175" y2="82" stroke="rgba(192,57,43,0.2)" />
+      <line x1="125" y1="82" x2="150" y2="126" stroke="rgba(192,57,43,0.2)" />
+      <line x1="175" y1="82" x2="150" y2="126" stroke="rgba(192,57,43,0.2)" />
+      {hexagons.map(([cx, cy]) => (
+        <polygon
+          key={`${cx}-${cy}`}
+          points={`${cx},${cy - 28} ${cx + 24},${cy - 14} ${cx + 24},${cy + 14} ${cx},${cy + 28} ${cx - 24},${cy + 14} ${cx - 24},${cy - 14}`}
+          fill="rgba(192,57,43,0.05)"
+          stroke="rgba(192,57,43,0.5)"
+        />
+      ))}
+    </svg>
+  );
+}
+
+function MobileSvg() {
+  return (
+    <svg viewBox="0 0 300 200" className="h-full w-full">
+      <defs>
+        <radialGradient id="mobileGlow" cx="50%" cy="45%" r="55%">
+          <stop offset="0%" stopColor="rgba(192,57,43,0.22)" />
+          <stop offset="100%" stopColor="transparent" />
+        </radialGradient>
+      </defs>
+      <rect width="300" height="200" fill="#1c1c1c" />
+      <rect width="300" height="200" fill="url(#mobileGlow)" />
+      <rect
+        x="118"
+        y="38"
+        width="64"
+        height="124"
+        rx="14"
+        fill="none"
+        stroke="var(--color-primary)"
+        strokeWidth="1.5"
+      />
+      <line x1="132" y1="84" x2="168" y2="84" stroke="rgba(192,57,43,0.55)" />
+      <line x1="132" y1="100" x2="168" y2="100" stroke="rgba(192,57,43,0.35)" />
+      <line x1="132" y1="116" x2="158" y2="116" stroke="rgba(192,57,43,0.25)" />
+    </svg>
+  );
+}
+
+function BlockchainSvg() {
+  const blocks = [
+    [70, 82],
+    [125, 118],
+    [180, 82],
+    [235, 118],
+  ];
+
+  return (
+    <svg viewBox="0 0 300 200" className="h-full w-full">
+      <rect width="300" height="200" fill="#1c1c1c" />
+      <polyline
+        points={blocks.map(([x, y]) => `${x + 18},${y + 18}`).join(" ")}
+        fill="none"
+        stroke="rgba(192,57,43,0.25)"
+      />
+      {blocks.map(([x, y]) => (
+        <g key={`${x}-${y}`}>
+          <rect
+            x={x}
+            y={y}
+            width="38"
+            height="38"
+            rx="4"
+            fill="rgba(192,57,43,0.05)"
+            stroke="var(--color-primary)"
+          />
+          <text
+            x={x + 19}
+            y={y + 25}
+            textAnchor="middle"
+            fontSize="16"
+            fill="var(--color-primary)"
+          >
+            #
+          </text>
+        </g>
+      ))}
+    </svg>
+  );
+}
+
+function AutomationSvg() {
+  return (
+    <svg viewBox="0 0 300 200" className="h-full w-full">
+      <rect width="300" height="200" fill="#1c1c1c" />
+      {[
+        ["INPUT", 34],
+        ["AGENT", 118],
+        ["SYNC", 202],
+      ].map(([label, x], index) => (
+        <g key={label}>
+          <rect
+            x={Number(x)}
+            y="82"
+            width="64"
+            height="36"
+            rx="8"
+            fill="rgba(192,57,43,0.05)"
+            stroke="rgba(192,57,43,0.5)"
+          />
+          <text
+            x={Number(x) + 32}
+            y="105"
+            textAnchor="middle"
+            fontSize="8"
+            letterSpacing="1"
+            fill="var(--color-primary)"
+          >
+            {label}
+          </text>
+          {index < 2 && (
+            <path
+              d={`M${Number(x) + 68} 100 H${Number(x) + 80} L${Number(x) + 75} 95 M${Number(x) + 80} 100 L${Number(x) + 75} 105`}
+              fill="none"
+              stroke="rgba(192,57,43,0.4)"
+            />
+          )}
+        </g>
+      ))}
+    </svg>
+  );
+}
+
+function DefaultSvg() {
+  const dots = Array.from({ length: 48 }, (_, index) => ({
+    x: 36 + (index % 8) * 32,
+    y: 36 + Math.floor(index / 8) * 26,
+    strong: index % 3 === 0,
+  }));
+
+  return (
+    <svg viewBox="0 0 300 200" className="h-full w-full">
+      <rect width="300" height="200" fill="#1c1c1c" />
+      {dots.map((dot) => (
+        <circle
+          key={`${dot.x}-${dot.y}`}
+          cx={dot.x}
+          cy={dot.y}
+          r="1.5"
+          fill={dot.strong ? "rgba(192,57,43,0.6)" : "rgba(192,57,43,0.3)"}
+        />
+      ))}
+    </svg>
+  );
+}
+
+function ProjectIllustration({ category }: { category: string }) {
+  if (category === "AI & Machine Learning") return <NeuralNetworkSvg />;
+  if (category === "Cybersecurity & VAPT") return <SecuritySvg />;
+  if (category === "Cloud & DevOps") return <CloudSvg />;
+  if (category === "Mobile App Development") return <MobileSvg />;
+  if (category === "Blockchain Solutions") return <BlockchainSvg />;
+  if (category === "AI & Workflow Automation") return <AutomationSvg />;
+
+  return <DefaultSvg />;
+}
+
 export default function CaseStudiesSection() {
   return (
-    <section
+    <motion.section
       id="case-studies"
-      className="relative overflow-hidden bg-[linear-gradient(180deg,#151515,var(--bg-900)_34%,#090909)] px-6 py-24 font-[family-name:var(--font-body)] sm:px-8 sm:py-28 lg:px-12 lg:py-32"
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.05 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="border-t border-white/[0.05] bg-[#080808] px-[5%] py-24 font-[family-name:var(--font-body)]"
     >
-      <div
-        aria-hidden="true"
-        className="absolute left-[-10rem] top-24 h-[36rem] w-[36rem] rounded-full bg-[radial-gradient(circle,rgba(192,57,43,0.14),transparent_68%)] blur-sm"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute right-[-12rem] bottom-20 h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.055),transparent_66%)]"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-[var(--color-primary-border)] to-transparent"
-      />
-
-      <div className="relative z-10 mx-auto max-w-7xl">
-        <div className="mb-14 grid gap-8 lg:grid-cols-[0.9fr_1fr] lg:items-end">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid gap-8 lg:grid-cols-[1fr_0.8fr] lg:items-end">
           <div>
-            <p className="mb-5 text-[10px] font-semibold tracking-[0.24em] text-[var(--color-primary)] uppercase">
-              Case Studies
+            <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--color-primary)]">
+              Our Work
             </p>
-            <h2 className="font-[family-name:var(--font-heading)] text-4xl leading-[0.98] font-semibold tracking-[-1.8px] text-[var(--text-primary)] sm:text-5xl lg:text-6xl">
+            <h2
+              className="max-w-[640px] font-[family-name:var(--font-heading)] font-semibold leading-[1.05] tracking-[-1.5px] text-[var(--text-primary)]"
+              style={{ fontSize: "clamp(28px, 3.5vw, 48px)" }}
+            >
               Proof that engineering quality turns into business outcomes
             </h2>
           </div>
-          <p className="max-w-2xl text-[15px] leading-[1.75] font-light text-[var(--text-secondary)] lg:justify-self-end">
-            Six outcome-led engagements across AI, cybersecurity, SaaS, cloud,
-            healthcare, and QA automation, designed to show the operational
-            gains behind the interface.
+          <p className="text-sm font-light leading-[1.75] text-[var(--text-secondary)] lg:justify-self-end">
+            Outcome-led engagements across AI, cybersecurity, cloud, mobile,
+            blockchain, and automation, each built for measurable impact.
           </p>
         </div>
 
         <motion.div
+          variants={gridVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          variants={containerVariants}
-          className="grid gap-6 lg:grid-cols-2"
+          viewport={{ once: true, amount: 0.05 }}
+          className="mt-[60px] grid gap-5 md:grid-cols-2 xl:grid-cols-3"
         >
-          {caseStudies.map((project, index) => (
+          {projects.map((project) => (
             <motion.article
               key={project.slug}
               variants={cardVariants}
-              whileHover={{ y: -8 }}
-              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-              className={`group relative overflow-hidden rounded-[24px] border border-white/[0.08] bg-[linear-gradient(145deg,rgba(255,255,255,0.09),rgba(255,255,255,0.024)_42%,rgba(192,57,43,0.04)),rgba(20,20,20,0.78)] p-6 shadow-[0_24px_90px_rgba(0,0,0,0.28)] backdrop-blur-xl transition-colors duration-300 hover:border-[var(--color-primary-border)] hover:shadow-[0_30px_110px_rgba(192,57,43,0.15)] sm:p-7 lg:p-8 ${
-                index === 0 ? "lg:col-span-2 lg:p-10" : ""
-              }`}
+              className="overflow-hidden rounded-[4px] border border-white/[0.07] bg-[#111111] transition-all duration-[250ms] ease-in-out hover:-translate-y-1 hover:border-[var(--color-primary-border)]"
             >
-              <div
-                aria-hidden="true"
-                className="absolute right-[-7rem] top-[-7rem] h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(192,57,43,0.2),transparent_68%)] opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-100"
-              />
-              <div
-                aria-hidden="true"
-                className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent"
-              />
-
-              <div
-                aria-hidden="true"
-                className={`absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(192,57,43,0.14),transparent_34%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100 ${
-                  index === 0 ? "opacity-100" : ""
-                }`}
-              />
-
-              <div className={`relative z-10 ${index === 0 ? "lg:grid lg:grid-cols-[0.9fr_1.1fr] lg:gap-10" : ""}`}>
-                <div>
-                <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
-                  <span className="inline-flex rounded-full border border-[var(--color-primary-border)] bg-[var(--color-primary-alpha)] px-4 py-2 text-[10px] font-semibold tracking-[0.16em] text-[var(--color-primary)] uppercase">
-                    {project.industry}
-                  </span>
-                  <span className="text-[10px] font-medium tracking-[0.18em] text-[var(--text-muted)] uppercase">
-                    {project.category}
-                  </span>
-                </div>
-
-                <h3 className={`font-[family-name:var(--font-heading)] leading-none font-semibold tracking-[-0.8px] text-[var(--text-primary)] ${
-                  index === 0 ? "text-4xl sm:text-5xl" : "text-3xl"
-                }`}>
+              <div className="h-[200px] overflow-hidden">
+                <ProjectIllustration category={project.category} />
+              </div>
+              <div className="p-6">
+                <span className="rounded-full border border-[var(--color-primary-border)] px-2.5 py-0.5 text-[10px] uppercase tracking-[0.1em] text-[var(--color-primary)]">
+                  {project.category}
+                </span>
+                <h3 className="mt-2.5 font-[family-name:var(--font-heading)] text-[19px] font-semibold text-[var(--text-primary)]">
                   {project.title}
                 </h3>
-                <p className="mt-4 text-sm leading-7 font-light text-[var(--text-secondary)]">
-                  {project.shortDescription}
+                <p className="mt-2 line-clamp-2 text-[13px] font-light leading-[1.65] text-[var(--text-secondary)]">
+                  {project.summary}
                 </p>
-
-                <div className="mt-6 grid gap-3 sm:grid-cols-3">
-                  {project.metrics.map((metric) => (
-                    <span
-                      key={metric}
-                      className="rounded-[12px] border border-white/[0.08] bg-white/[0.04] px-3 py-3 text-center text-[11px] font-medium leading-5 text-[var(--text-primary)]"
-                    >
-                      {metric}
-                    </span>
-                  ))}
-                </div>
-                </div>
-
-                <div className={index === 0 ? "mt-8 lg:mt-0" : ""}>
-                <div className="mt-7 grid gap-5 md:grid-cols-2">
-                  <div className="rounded-[14px] border border-white/[0.07] bg-black/15 p-5">
-                    <p className="mb-3 text-[10px] font-semibold tracking-[0.2em] text-[var(--color-primary)] uppercase">
-                      Challenge
-                    </p>
-                    <p className="text-xs leading-6 font-light text-[var(--text-secondary)]">
-                      {project.challenge}
-                    </p>
-                  </div>
-                  <div className="rounded-[14px] border border-white/[0.07] bg-black/15 p-5">
-                    <p className="mb-3 text-[10px] font-semibold tracking-[0.2em] text-[var(--color-primary)] uppercase">
-                      Solution
-                    </p>
-                    <p className="text-xs leading-6 font-light text-[var(--text-secondary)]">
-                      {project.solution}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="mt-7">
-                  <p className="mb-3 text-[10px] font-semibold tracking-[0.2em] text-[var(--color-primary)] uppercase">
-                    Business Results
-                  </p>
-                  <ul className="space-y-2">
-                    {project.businessResults.map((result) => (
-                      <li
-                        key={result}
-                        className="flex gap-3 text-xs leading-6 font-light text-[var(--text-secondary)]"
-                      >
-                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-primary)] shadow-[0_0_18px_rgba(192,57,43,0.7)]" />
-                        <span>{result}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="mt-7 flex flex-wrap gap-2">
-                  {project.technologies.map((technology) => (
+                <div className="mt-3 flex flex-wrap gap-1.5">
+                  {project.technologies.slice(0, 3).map((technology) => (
                     <span
                       key={technology}
-                      className="rounded-full border border-white/[0.07] bg-white/[0.035] px-3 py-1.5 text-[10px] font-light text-[var(--text-muted)]"
+                      className="rounded-[3px] border border-white/[0.08] bg-white/[0.04] px-2 py-0.5 text-[11px] text-[var(--text-secondary)]"
                     >
                       {technology}
                     </span>
                   ))}
                 </div>
-
-                <div className="mt-7 flex items-center justify-between gap-4 border-t border-white/[0.07] pt-5 text-[11px] font-light text-[var(--text-muted)]">
+                <div className="mt-3 flex justify-between gap-4 border-t border-white/[0.05] pt-3 text-[11px] text-[var(--text-muted)]">
                   <span>{project.meta.duration}</span>
                   <span>{project.meta.teamSize}</span>
                 </div>
-                </div>
               </div>
-
-              <span className="absolute bottom-0 left-0 h-px w-full origin-left scale-x-0 bg-[var(--color-primary)] transition-transform duration-300 group-hover:scale-x-100" />
             </motion.article>
           ))}
         </motion.div>
@@ -186,16 +377,12 @@ export default function CaseStudiesSection() {
         <div className="mt-12 flex justify-center">
           <Link
             href="/portfolio"
-            className="group relative inline-flex border border-[var(--color-primary-border)] px-7 py-4 text-sm font-medium text-[var(--text-primary)] transition-colors hover:text-[var(--color-primary)]"
+            className="rounded-[4px] border border-white/10 px-8 py-3 text-[13px] text-[var(--text-secondary)] transition-all duration-[250ms] ease-in-out hover:-translate-y-[3px] hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]"
           >
             View All Projects →
-            <span
-              aria-hidden="true"
-              className="absolute bottom-0 left-0 h-px w-full origin-left scale-x-0 bg-[var(--color-primary)] transition-transform duration-300 group-hover:scale-x-100"
-            />
           </Link>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

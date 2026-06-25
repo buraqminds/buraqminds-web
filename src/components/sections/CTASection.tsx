@@ -1,52 +1,56 @@
-import { siteConfig } from "@/lib/config";
+"use client";
+
+import { motion } from "framer-motion";
 import Link from "next/link";
 
 export default function CTASection() {
   return (
-    <section
+    <motion.section
       id="cta"
-      className="relative overflow-hidden border-y border-[var(--color-primary-border)] bg-[var(--bg-800)] px-6 py-[100px] text-center font-[family-name:var(--font-body)] sm:px-8 lg:px-12"
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.05 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="relative overflow-hidden border-y border-[var(--color-primary-border)] bg-[#111111] px-[5%] py-[100px] text-center font-[family-name:var(--font-body)]"
     >
       <div
         aria-hidden="true"
-        className="absolute left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-2xl"
-        style={{
-          background:
-            "radial-gradient(circle, var(--color-primary-alpha) 0%, transparent 70%)",
-        }}
+        className="pointer-events-none absolute left-1/2 top-[-200px] h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(192,57,43,0.06)_0%,transparent_65%)]"
       />
 
-      <div className="relative z-10 mx-auto max-w-3xl">
-        <p className="mb-5 text-[10px] font-semibold tracking-[0.2em] text-[var(--color-primary)] uppercase">
+      <div className="relative z-10 mx-auto max-w-4xl">
+        <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--color-primary)]">
           Get Started Today
         </p>
-        <h2 className="font-[family-name:var(--font-heading)] text-4xl leading-none font-semibold tracking-[-2px] text-[var(--text-primary)] sm:text-5xl lg:text-6xl">
+        <h2
+          className="mt-4 font-[family-name:var(--font-heading)] font-semibold leading-[1.05] tracking-[-1.5px] text-[var(--text-primary)]"
+          style={{ fontSize: "clamp(36px, 5vw, 64px)" }}
+        >
           Ready to build something{" "}
-          <em className="font-normal text-[var(--color-primary)]">
-            extraordinary
-          </em>
-          ?
+          <span className="italic text-[var(--color-primary)]">
+            extraordinary?
+          </span>
         </h2>
-        <p className="mx-auto mt-6 max-w-2xl text-[15px] leading-8 font-light text-[var(--text-secondary)]">
-          Let’s turn your idea into a secure, scalable product with the right
-          blend of strategy, design, and engineering.
+        <p className="mx-auto mt-5 max-w-[520px] text-base font-light leading-[1.75] text-[var(--text-secondary)]">
+          Let&apos;s turn your idea into a secure, scalable product with the
+          right blend of strategy, engineering, and security.
         </p>
 
-        <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <div className="mt-10 flex flex-wrap justify-center gap-[14px]">
           <Link
             href="/contact"
-            className="inline-flex min-w-[240px] items-center justify-center bg-[var(--color-primary)] px-8 py-4 text-sm font-medium text-white transition-colors hover:bg-[var(--color-primary-light)]"
+            className="rounded-[4px] bg-[var(--color-primary)] px-9 py-[15px] text-sm font-semibold tracking-[0.03em] text-white transition-all duration-[250ms] ease-in-out hover:-translate-y-0.5 hover:bg-[var(--color-primary-light)]"
           >
             Request Free Consultation
           </Link>
           <a
-            href={`mailto:${siteConfig.email}`}
-            className="inline-flex min-w-[240px] items-center justify-center border border-[var(--color-primary-border)] px-8 py-4 text-sm font-medium text-[var(--text-primary)] transition-colors hover:border-[var(--color-primary)] hover:text-[var(--color-primary)]"
+            href="mailto:info@buraqminds.com"
+            className="rounded-[4px] border border-white/[0.12] bg-transparent px-9 py-[15px] text-sm text-[var(--text-secondary)] transition-all duration-[250ms] ease-in-out hover:-translate-y-0.5 hover:border-[var(--color-primary-border)] hover:text-[var(--color-primary)]"
           >
-            {siteConfig.email}
+            info@buraqminds.com
           </a>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

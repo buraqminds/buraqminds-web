@@ -1,380 +1,330 @@
 "use client";
 
-import { saveAssessment } from "@/lib/firebase";
 import { AnimatePresence, motion } from "framer-motion";
 import { useMemo, useState } from "react";
 
-type ServiceKey = "saas" | "cyber" | "ai" | "mobile" | "cloud" | "web";
+type ServiceKey = "saas" | "cyber" | "ai" | "cloud" | "mobile" | "web";
 type ScopeKey = "mvp" | "mid" | "enterprise" | "audit";
 
-const serviceOptions: Array<{ key: ServiceKey; label: string; icon: string }> = [
-  { key: "saas", label: "SaaS", icon: "S" },
-  { key: "cyber", label: "Cybersecurity", icon: "C" },
-  { key: "ai", label: "AI / ML", icon: "A" },
-  { key: "mobile", label: "Mobile App", icon: "M" },
-  { key: "cloud", label: "Cloud", icon: "D" },
-  { key: "web", label: "Web", icon: "W" },
-];
-
-const scopeOptions: Array<{ key: ScopeKey; label: string }> = [
-  { key: "mvp", label: "MVP" },
-  { key: "mid", label: "Mid-size" },
-  { key: "enterprise", label: "Enterprise" },
-  { key: "audit", label: "Audit" },
-];
-
-const timelineOptions = ["30–45 days", "2–3 months", "3–6 months", "Ongoing"];
-
-const priceTable: Record<ServiceKey, Partial<Record<ScopeKey, string>>> = {
-  saas: {
-    mvp: "$3k–8k",
-    mid: "$10k–25k",
-    enterprise: "$30k–80k",
-  },
-  cyber: {
-    mvp: "$1.5k–4k",
-    mid: "$5k–15k",
-    audit: "$1.5k–4k",
-  },
-  ai: {
-    mvp: "$4k–12k",
-    mid: "$15k–40k",
-  },
-  mobile: {
-    mvp: "$5k–12k",
-  },
-  cloud: {
-    mvp: "$2k–6k",
-  },
-  web: {
-    mvp: "$800–2.5k",
-  },
+type Option<T extends string> = {
+  key: T;
+  label: string;
+  icon?: "browser" | "shield" | "brain" | "cloud" | "phone" | "code";
 };
 
-function getPrice(service: ServiceKey, scope: ScopeKey) {
-  return priceTable[service][scope] || priceTable[service].mvp || "$3k–8k";
-}
+const serviceOptions: Option<ServiceKey>[] = [
+  { key: "saas", label: "SaaS / Web App", icon: "browser" },
+  { key: "cyber", label: "Cybersecurity", icon: "shield" },
+  { key: "ai", label: "AI / ML Solution", icon: "brain" },
+  { key: "cloud", label: "Cloud & DevOps", icon: "cloud" },
+  { key: "mobile", label: "Mobile App", icon: "phone" },
+  { key: "web", label: "Web Development", icon: "code" },
+];
 
-export default function EstimatorSection() {
-  const [step, setStep] = useState(1);
-  const [service, setService] = useState<ServiceKey>("saas");
-  const [scope, setScope] = useState<ScopeKey>("mvp");
-  const [timeline, setTimeline] = useState(timelineOptions[1]);
-  const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "saving" | "saved" | "error">(
-    "idle",
-  );
+const scopeOptions: Option<ScopeKey>[] = [
+  { key: "mvp", label: "MVP / Starter" },
+  { key: "mid", label: "Mid-size Product" },
+  { key: "enterprise", label: "Enterprise Solution" },
+  { key: "audit", label: "Audit / Assessment" },
+];
 
-  const price = useMemo(() => getPrice(service, scope), [scope, service]);
-  const selectedService =
-    serviceOptions.find((option) => option.key === service)?.label || "SaaS";
+const timelineOptions = [
+  "ASAP (1-4 weeks)",
+  "1-3 months",
+  "3-6 months",
+  "Ongoing",
+] as const;
 
-  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    setStatus("saving");
+const priceLookup: Record<string, string> = {
+  "saas-mvp": "$3,000 - $8,000",
+  "saas-mid": "$10,000 - $25,000",
+  "saas-enterprise": "$30,000 - $80,000",
+  "cyber-mvp": "$1,500 - $4,000",
+  "cyber-mid": "$5,000 - $15,000",
+  "cyber-enterprise": "$15,000 - $40,000",
+  "ai-mvp": "$4,000 - $12,000",
+  "ai-mid": "$15,000 - $40,000",
+  "cloud-mvp": "$2,000 - $6,000",
+  "cloud-mid": "$8,000 - $20,000",
+  "mobile-mvp": "$5,000 - $12,000",
+  "web-mvp": "$800 - $2,500",
+};
 
-    try {
-      await saveAssessment({
-        email,
-        service: selectedService,
-        scope: scopeOptions.find((option) => option.key === scope)?.label || scope,
-        timeline,
-        aiRecommendation: `${selectedService} ${scope.toUpperCase()} project estimated at ${price} with a ${timeline} delivery target.`,
-      });
-      setStatus("saved");
-    } catch {
-      setStatus("error");
-    }
+function ServiceIcon({ icon }: { icon: NonNullable<Option<ServiceKey>["icon"]> }) {
+  const commonProps = {
+    width: 20,
+    height: 20,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 1.6,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+  };
+
+  if (icon === "shield") {
+    return (
+      <svg {...commonProps}>
+        <path d="M12 3 19 6v5c0 5-3 8-7 10-4-2-7-5-7-10V6l7-3Z" />
+      </svg>
+    );
+  }
+
+  if (icon === "brain") {
+    return (
+      <svg {...commonProps}>
+        <path d="M8 6a3 3 0 0 1 5-2 3 3 0 0 1 4 4 3 3 0 0 1-1 6 3 3 0 0 1-4 4 3 3 0 0 1-4-2 3 3 0 0 1-1-6 3 3 0 0 1 1-4Z" />
+        <path d="M12 4v16M8 10h8" />
+      </svg>
+    );
+  }
+
+  if (icon === "cloud") {
+    return (
+      <svg {...commonProps}>
+        <path d="M7 18h10a4 4 0 0 0 0-8 6 6 0 0 0-11-2 5 5 0 0 0 1 10Z" />
+      </svg>
+    );
+  }
+
+  if (icon === "phone") {
+    return (
+      <svg {...commonProps}>
+        <rect x="7" y="3" width="10" height="18" rx="2" />
+        <path d="M11 17h2" />
+      </svg>
+    );
+  }
+
+  if (icon === "code") {
+    return (
+      <svg {...commonProps}>
+        <path d="m8 9-4 3 4 3M16 9l4 3-4 3M14 5l-4 14" />
+      </svg>
+    );
   }
 
   return (
-    <section
-      id="estimator"
-      className="relative overflow-hidden bg-[var(--bg-900)] px-6 py-[110px] font-[family-name:var(--font-body)] sm:px-8 lg:px-12"
+    <svg {...commonProps}>
+      <rect x="3" y="5" width="18" height="14" rx="2" />
+      <path d="M3 9h18" />
+    </svg>
+  );
+}
+
+function OptionCard<T extends string>({
+  option,
+  selected,
+  onClick,
+}: {
+  option: Option<T>;
+  selected: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`flex cursor-pointer items-center gap-3 rounded-[4px] border p-4 text-left transition-all duration-[250ms] ease-in-out hover:-translate-y-[3px] hover:border-[var(--color-primary-border)] ${
+        selected
+          ? "border-[var(--color-primary)] bg-[rgba(192,57,43,0.06)]"
+          : "border-white/[0.08] bg-[#1c1c1c]"
+      }`}
     >
-      <div
-        aria-hidden="true"
-        className="absolute right-[-12rem] top-20 h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(circle,var(--color-primary-alpha),transparent_66%)]"
-      />
-      <div
-        aria-hidden="true"
-        className="absolute bottom-10 left-[-10rem] h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(circle,rgba(192,57,43,0.08),transparent_70%)]"
-      />
+      {option.icon && (
+        <span className="text-[var(--color-primary)]">
+          <ServiceIcon icon={option.icon} />
+        </span>
+      )}
+      <span className="text-sm font-medium text-[var(--text-primary)]">
+        {option.label}
+      </span>
+    </button>
+  );
+}
 
-      <div className="relative z-10 mx-auto max-w-7xl">
-        <div className="mx-auto mb-14 max-w-3xl text-center">
-          <p className="mb-4 text-[10px] font-semibold tracking-[0.2em] text-[var(--color-primary)] uppercase">
-            Estimate
-          </p>
-          <h2 className="font-[family-name:var(--font-heading)] text-4xl leading-none font-semibold tracking-[-2px] text-[var(--text-primary)] sm:text-5xl lg:text-6xl">
-            Project Cost Estimator
-          </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-[15px] leading-8 font-light text-[var(--text-secondary)]">
-            Get a practical budget range based on service type, scope, and
-            timeline before you book a strategy call.
-          </p>
+export default function EstimatorSection() {
+  const [currentStep, setCurrentStep] = useState(0);
+  const [service, setService] = useState<ServiceKey>("saas");
+  const [scope, setScope] = useState<ScopeKey>("mvp");
+  const [timeline, setTimeline] = useState<(typeof timelineOptions)[number]>(
+    "1-3 months",
+  );
+  const [email, setEmail] = useState("");
+
+  const selectedService = serviceOptions.find((option) => option.key === service);
+  const selectedScope = scopeOptions.find((option) => option.key === scope);
+  const estimate = useMemo(
+    () => priceLookup[`${service}-${scope}`] || "$3,000 - $10,000",
+    [scope, service],
+  );
+
+  const stepContent = [
+    {
+      question: "What type of project do you need?",
+      body: (
+        <div className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
+          {serviceOptions.map((option) => (
+            <OptionCard
+              key={option.key}
+              option={option}
+              selected={service === option.key}
+              onClick={() => setService(option.key)}
+            />
+          ))}
         </div>
+      ),
+    },
+    {
+      question: "What is the project scope?",
+      body: (
+        <div className="grid gap-2.5 sm:grid-cols-2">
+          {scopeOptions.map((option) => (
+            <OptionCard
+              key={option.key}
+              option={option}
+              selected={scope === option.key}
+              onClick={() => setScope(option.key)}
+            />
+          ))}
+        </div>
+      ),
+    },
+    {
+      question: "What is your timeline?",
+      body: (
+        <div className="grid gap-2.5 sm:grid-cols-2">
+          {timelineOptions.map((option) => (
+            <button
+              key={option}
+              type="button"
+              onClick={() => setTimeline(option)}
+              className={`rounded-[4px] border p-4 text-left text-sm font-medium transition-all duration-[250ms] ease-in-out hover:-translate-y-[3px] hover:border-[var(--color-primary-border)] ${
+                timeline === option
+                  ? "border-[var(--color-primary)] bg-[rgba(192,57,43,0.06)] text-[var(--text-primary)]"
+                  : "border-white/[0.08] bg-[#1c1c1c] text-[var(--text-primary)]"
+              }`}
+            >
+              {option}
+            </button>
+          ))}
+        </div>
+      ),
+    },
+    {
+      question: "Estimated project range",
+      body: (
+        <div>
+          <div className="font-[family-name:var(--font-heading)] text-[52px] leading-none tracking-[-2px] text-[var(--color-primary)]">
+            {estimate}
+          </div>
+          <p className="mt-3 text-base text-[var(--text-secondary)]">
+            Suggested timeline: {timeline}
+          </p>
+          <div className="mt-6 flex flex-wrap gap-2">
+            {[selectedService?.label, selectedScope?.label, timeline].map((item) => (
+              <span
+                key={item}
+                className="rounded-full border border-white/[0.08] px-3 py-1 text-xs text-[var(--text-secondary)]"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+          <input
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            type="email"
+            placeholder="you@company.com"
+            className="mt-6 w-full rounded-[4px] border border-white/10 bg-[#1c1c1c] px-4 py-3 text-[var(--text-primary)] outline-none placeholder:text-[var(--text-muted)] focus:border-[var(--color-primary-border)]"
+          />
+          <button
+            type="button"
+            className="mt-3 w-full rounded-[4px] bg-[var(--color-primary)] p-[13px] font-semibold text-white transition-colors hover:bg-[var(--color-primary-light)]"
+          >
+            Get Detailed Report
+          </button>
+        </div>
+      ),
+    },
+  ];
 
-        <form
-          onSubmit={handleSubmit}
-          className="overflow-hidden rounded-[4px] border border-white/[0.06] bg-[rgba(20,20,20,0.82)] backdrop-blur-xl"
+  return (
+    <motion.section
+      id="estimator"
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.05 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
+      className="border-t border-white/[0.05] bg-[#080808] px-[5%] py-24 font-[family-name:var(--font-body)]"
+    >
+      <div className="mx-auto max-w-5xl text-center">
+        <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--color-primary)]">
+          Free Tool
+        </p>
+        <h2
+          className="font-[family-name:var(--font-heading)] font-semibold leading-[1.05] tracking-[-1.5px] text-[var(--text-primary)]"
+          style={{ fontSize: "clamp(28px, 3.5vw, 48px)" }}
         >
-          <div className="grid grid-cols-4 border-b border-white/[0.06] bg-black/10">
-            {[1, 2, 3, 4].map((item) => {
-              const isDone = step > item;
-              const isActive = step === item;
+          Project Cost Estimator
+        </h2>
+        <p className="mx-auto mb-12 mt-4 max-w-xl text-sm font-light leading-[1.75] text-[var(--text-secondary)]">
+          Answer 3 questions and get an instant project budget range.
+        </p>
 
-              return (
-                <button
-                  key={item}
-                  type="button"
-                  onClick={() => setStep(item)}
-                  className="flex items-center justify-center gap-3 border-r border-white/[0.06] px-3 py-5 last:border-r-0"
-                  aria-label={`Go to estimator step ${item}`}
-                >
-                  <span
-                    className={`flex items-center justify-center rounded-full border border-[var(--color-primary-border)] transition-colors ${
-                      isActive
-                        ? "h-9 w-9 bg-[var(--color-primary)] text-white"
-                        : isDone
-                          ? "h-5 w-5 bg-[var(--color-primary)] text-[0px]"
-                          : "h-9 w-9 text-[var(--color-primary)]"
-                    }`}
-                  >
-                    {item}
-                  </span>
-                </button>
-              );
-            })}
+        <div className="mx-auto max-w-[720px] rounded-[4px] border border-[var(--color-primary-border)] bg-[#111111] p-8 text-left sm:p-12">
+          <div className="mb-8 flex justify-center gap-2">
+            {[0, 1, 2].map((step) => (
+              <span
+                key={step}
+                className={`h-1.5 rounded-[3px] ${
+                  Math.min(currentStep, 2) === step
+                    ? "w-8 bg-[var(--color-primary)]"
+                    : "w-2 bg-white/[0.15]"
+                }`}
+              />
+            ))}
           </div>
 
-          <div className="min-h-[500px] p-5 sm:p-8 lg:p-10">
-            <AnimatePresence mode="wait">
-              {step === 1 && (
-                <motion.div
-                  key="service"
-                  initial={{ opacity: 0, y: 18 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -18 }}
-                  transition={{ duration: 0.25 }}
-                >
-                  <div className="mb-8 flex flex-col justify-between gap-3 md:flex-row md:items-end">
-                    <div>
-                      <p className="mb-3 text-[10px] font-semibold tracking-[0.2em] text-[var(--color-primary)] uppercase">
-                        Step 01
-                      </p>
-                      <h3 className="font-[family-name:var(--font-heading)] text-3xl leading-[1.05] tracking-[-1.5px] text-[var(--text-primary)]">
-                        Select service type
-                      </h3>
-                    </div>
-                    <p className="max-w-md text-sm leading-[1.75] font-light text-[var(--text-secondary)]">
-                      Choose the primary engagement type so we can align the estimate to the right delivery model.
-                    </p>
-                  </div>
-                  <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                    {serviceOptions.map((option) => (
-                      <button
-                        key={option.key}
-                        type="button"
-                        onClick={() => {
-                          setService(option.key);
-                          setStep(2);
-                        }}
-                        className={`group relative min-h-36 overflow-hidden rounded-[4px] border border-white/[0.06] bg-[rgba(26,26,26,0.78)] p-6 text-left transition-colors hover:bg-[var(--bg-600)] ${
-                          service === option.key ? "border-[var(--color-primary-border)]" : ""
-                        }`}
-                      >
-                        <span className="mb-7 flex h-11 w-11 items-center justify-center border border-[var(--color-primary-border)] text-[var(--color-primary)]">
-                          {option.icon}
-                        </span>
-                        <span className="block text-base font-light text-[var(--text-primary)]">
-                          {option.label}
-                        </span>
-                        <span className="mt-3 block text-xs leading-5 font-light text-[var(--text-muted)]">
-                          {option.key === "saas" && "Platforms, portals, and subscription products."}
-                          {option.key === "cyber" && "Assessments, VAPT, and readiness hardening."}
-                          {option.key === "ai" && "Automation, RAG, agents, and ML workflows."}
-                          {option.key === "mobile" && "Cross-platform apps for funded teams."}
-                          {option.key === "cloud" && "Infrastructure, migration, and CI/CD."}
-                          {option.key === "web" && "Premium web apps and conversion sites."}
-                        </span>
-                        <span className="absolute bottom-0 left-0 h-px w-full origin-left scale-x-0 bg-[var(--color-primary)] transition-transform duration-300 group-hover:scale-x-100" />
-                      </button>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentStep}
+              initial={{ x: 30, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: -30, opacity: 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <h3 className="mb-6 font-[family-name:var(--font-heading)] text-2xl font-semibold text-[var(--text-primary)]">
+                {stepContent[currentStep].question}
+              </h3>
+              {stepContent[currentStep].body}
+            </motion.div>
+          </AnimatePresence>
 
-              {step === 2 && (
-                <motion.div
-                  key="scope"
-                  initial={{ opacity: 0, y: 18 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -18 }}
-                  transition={{ duration: 0.25 }}
-                >
-                  <div className="mb-8 flex flex-col justify-between gap-3 md:flex-row md:items-end">
-                    <div>
-                      <p className="mb-3 text-[10px] font-semibold tracking-[0.2em] text-[var(--color-primary)] uppercase">
-                        Step 02
-                      </p>
-                      <h3 className="font-[family-name:var(--font-heading)] text-3xl leading-[1.05] tracking-[-1.5px] text-[var(--text-primary)]">
-                        Choose project scope
-                      </h3>
-                    </div>
-                    <p className="max-w-md text-sm leading-[1.75] font-light text-[var(--text-secondary)]">
-                      Scope controls complexity, architecture depth, QA coverage, and team size.
-                    </p>
-                  </div>
-                  <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                    {scopeOptions.map((option) => (
-                      <button
-                        key={option.key}
-                        type="button"
-                        onClick={() => {
-                          setScope(option.key);
-                          setStep(3);
-                        }}
-                        className={`group relative min-h-36 rounded-[4px] border border-white/[0.06] bg-[rgba(26,26,26,0.78)] p-6 text-left transition-colors hover:bg-[var(--bg-600)] ${
-                          scope === option.key ? "border-[var(--color-primary-border)]" : ""
-                        }`}
-                      >
-                        <span className="text-base font-light text-[var(--text-primary)]">
-                          {option.label}
-                        </span>
-                        <span className="mt-4 block text-xs leading-5 font-light text-[var(--text-muted)]">
-                          {option.key === "mvp" && "Focused launch version for validation."}
-                          {option.key === "mid" && "Production-ready product with integrations."}
-                          {option.key === "enterprise" && "Complex systems, scale, governance."}
-                          {option.key === "audit" && "Security review and risk report."}
-                        </span>
-                        <span className="absolute bottom-0 left-0 h-px w-full origin-left scale-x-0 bg-[var(--color-primary)] transition-transform duration-300 group-hover:scale-x-100" />
-                      </button>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
-
-              {step === 3 && (
-                <motion.div
-                  key="timeline"
-                  initial={{ opacity: 0, y: 18 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -18 }}
-                  transition={{ duration: 0.25 }}
-                >
-                  <div className="mb-8 flex flex-col justify-between gap-3 md:flex-row md:items-end">
-                    <div>
-                      <p className="mb-3 text-[10px] font-semibold tracking-[0.2em] text-[var(--color-primary)] uppercase">
-                        Step 03
-                      </p>
-                      <h3 className="font-[family-name:var(--font-heading)] text-3xl leading-[1.05] tracking-[-1.5px] text-[var(--text-primary)]">
-                        Pick target timeline
-                      </h3>
-                    </div>
-                    <p className="max-w-md text-sm leading-[1.75] font-light text-[var(--text-secondary)]">
-                      We’ll tune the estimate around urgency, release strategy, and delivery capacity.
-                    </p>
-                  </div>
-                  <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                    {timelineOptions.map((option) => (
-                      <button
-                        key={option}
-                        type="button"
-                        onClick={() => {
-                          setTimeline(option);
-                          setStep(4);
-                        }}
-                        className={`group relative min-h-32 rounded-[4px] border border-white/[0.06] bg-[rgba(26,26,26,0.78)] p-6 text-left transition-colors hover:bg-[var(--bg-600)] ${
-                          timeline === option ? "border-[var(--color-primary-border)]" : ""
-                        }`}
-                      >
-                        <span className="text-sm font-light text-[var(--text-primary)]">
-                          {option}
-                        </span>
-                        <span className="absolute bottom-0 left-0 h-px w-full origin-left scale-x-0 bg-[var(--color-primary)] transition-transform duration-300 group-hover:scale-x-100" />
-                      </button>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
-
-              {step === 4 && (
-                <motion.div
-                  key="result"
-                  initial={{ opacity: 0, y: 18 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -18 }}
-                  transition={{ duration: 0.25 }}
-                  className="grid gap-8 lg:grid-cols-[0.8fr_1fr] lg:items-stretch"
-                >
-                  <div className="rounded-[4px] border border-white/[0.06] bg-[rgba(26,26,26,0.72)] p-7">
-                    <p className="mb-3 text-[10px] font-semibold tracking-[0.2em] text-[var(--color-primary)] uppercase">
-                      Estimated Range
-                    </p>
-                    <div className="font-[family-name:var(--font-heading)] text-5xl leading-none tracking-[-2px] text-[var(--color-primary)]">
-                      {price}
-                    </div>
-                    <div className="mt-8 grid gap-3 text-xs font-light text-[var(--text-secondary)]">
-                      <div className="flex justify-between border-b border-white/[0.06] pb-3">
-                        <span>Service</span>
-                        <span className="text-[var(--text-primary)]">{selectedService}</span>
-                      </div>
-                      <div className="flex justify-between border-b border-white/[0.06] pb-3">
-                        <span>Scope</span>
-                        <span className="text-[var(--text-primary)]">
-                          {scopeOptions.find((option) => option.key === scope)?.label}
-                        </span>
-                      </div>
-                      <div className="flex justify-between border-b border-white/[0.06] pb-3">
-                        <span>Timeline</span>
-                        <span className="text-[var(--text-primary)]">{timeline}</span>
-                      </div>
-                    </div>
-                    <p className="mt-5 text-[13px] leading-6 font-light text-[var(--text-secondary)]">
-                      Suggested timeline: {timeline}. Final pricing depends on
-                      integrations, compliance requirements, and team structure.
-                    </p>
-                  </div>
-
-                  <div className="rounded-[4px] border border-white/[0.06] bg-[rgba(26,26,26,0.78)] p-7">
-                    <label className="grid gap-2 text-[13px] font-light text-[var(--text-secondary)]">
-                      Email for detailed report
-                      <input
-                        value={email}
-                        onChange={(event) => setEmail(event.target.value)}
-                        type="email"
-                        required
-                        placeholder="you@company.com"
-                        className="h-12 border border-white/[0.06] bg-[var(--bg-800)] px-4 text-[var(--text-primary)] outline-none placeholder:text-[var(--text-muted)] focus:border-[var(--color-primary-border)]"
-                      />
-                    </label>
-                    <button
-                      type="submit"
-                      disabled={status === "saving"}
-                      className="mt-5 inline-flex w-full items-center justify-center bg-[var(--color-primary)] px-6 py-4 text-sm font-medium text-white transition-colors hover:bg-[var(--color-primary-light)] disabled:cursor-not-allowed disabled:opacity-70"
-                    >
-                      {status === "saving"
-                        ? "Sending..."
-                        : "Get Detailed Report"}
-                    </button>
-                    {status === "saved" && (
-                      <p className="mt-4 text-[13px] font-light text-[var(--text-secondary)]">
-                        Report request saved. We will follow up with details.
-                      </p>
-                    )}
-                    {status === "error" && (
-                      <p className="mt-4 text-[13px] font-light text-[var(--color-primary-light)]">
-                        Could not save right now. Please email info@buraqminds.com.
-                      </p>
-                    )}
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+          <div className="mt-8 flex items-center justify-between gap-4">
+            {currentStep > 0 ? (
+              <button
+                type="button"
+                onClick={() => setCurrentStep((step) => Math.max(0, step - 1))}
+                className="rounded-[4px] border border-white/10 px-5 py-3 text-sm text-[var(--text-secondary)] transition-colors hover:border-[var(--color-primary-border)] hover:text-[var(--color-primary)]"
+              >
+                ← Back
+              </button>
+            ) : (
+              <span />
+            )}
+            {currentStep < 3 && (
+              <button
+                type="button"
+                onClick={() => setCurrentStep((step) => Math.min(3, step + 1))}
+                className="rounded-[4px] bg-[var(--color-primary)] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[var(--color-primary-light)]"
+              >
+                Next →
+              </button>
+            )}
           </div>
-        </form>
+        </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
